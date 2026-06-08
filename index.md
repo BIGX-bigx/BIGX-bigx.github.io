@@ -7,14 +7,13 @@ title: HomePage
   <p class="eyebrow">Personal Blog</p>
   <h1>欢迎来到我的博客</h1>
   <p class="hero-text">
-    用于整理 Profile、比赛复现、学习笔记和阶段性总结
+    用于整理 Profile、比赛复现、学习笔记和阶段性总结。内容保持简洁、可检索、方便长期维护。
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/profile/' | relative_url }}">查看 Profile</a>
     <a class="button ghost" href="{{ '/categories/' | relative_url }}">浏览分类</a>
   </div>
 </section>
-
 
 <section class="section">
   <div class="section-head">

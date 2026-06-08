@@ -30,6 +30,15 @@ tags: [web, ctf, reproduction]
 
 正文直接写 Markdown。
 
+## 修改首页和 Profile
+
+日常只需要改这两个 Markdown 文件：
+
+- 首页：`index.md`
+- 个人页面：`profile.md`
+
+`_layouts/`、`_includes/` 和 `assets/css/` 是主题结构和样式文件，不需要日常修改。
+
 ## 本地预览
 
 如果本机已经安装 Ruby：

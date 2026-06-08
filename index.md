@@ -1,42 +1,24 @@
 ---
-layout: default
+layout: page
 title: HomePage
+description: "个人经历与比赛复现记录。"
 ---
 
-<section class="hero">
-  <p class="eyebrow">Personal Blog</p>
-  <h1>记录个人经历，也复盘每一次比赛。</h1>
-  <p class="hero-text">
-    这里用于整理 Profile、比赛复现、学习笔记和阶段性总结。内容保持简洁、可检索、方便长期维护。
-  </p>
-  <div class="hero-actions">
-    <a class="button" href="{{ '/profile/' | relative_url }}">查看 Profile</a>
-    <a class="button ghost" href="{{ '/categories/' | relative_url }}">浏览分类</a>
-  </div>
-</section>
+# 记录个人经历，也复盘每一次比赛
 
-<section class="section">
-  <div class="section-head">
-    <h2>Latest Posts</h2>
-    <a href="{{ '/tags/' | relative_url }}">All tags</a>
-  </div>
+这里用于整理 Profile、比赛复现、学习笔记和阶段性总结。内容保持简洁、可检索、方便长期维护。
 
-  {% if site.posts.size > 0 %}
-    <div class="post-list">
-      {% for post in site.posts %}
-        <article class="post-card">
-          <div>
-            <p class="eyebrow">{{ post.categories | join: " / " }}</p>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            <p>{{ post.excerpt | strip_html | truncate: 110 }}</p>
-          </div>
-          <div class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="muted">还没有文章。你可以在 <code>_posts/</code> 中新增 Markdown 文件。</p>
-  {% endif %}
-</section>
+- [查看 Profile]({{ '/profile/' | relative_url }})
+- [浏览 Categories]({{ '/categories/' | relative_url }})
+- [浏览 Tag]({{ '/tags/' | relative_url }})
+
+## Latest Posts
+
+{% if site.posts.size > 0 %}
+{% for post in site.posts %}
+- {{ post.date | date: "%Y-%m-%d" }} [{{ post.title }}]({{ post.url | relative_url }})  
+  分类：{{ post.categories | join: " / " }}{% if post.tags and post.tags.size > 0 %}；标签：{{ post.tags | join: ", " }}{% endif %}
+{% endfor %}
+{% else %}
+还没有文章。你可以在 `_posts/` 中新增 Markdown 文件。
+{% endif %}

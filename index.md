@@ -15,6 +15,7 @@ title: HomePage
   </div>
 </section>
 
+
 <section class="section">
   <div class="section-head">
     <h2>Latest Posts</h2>

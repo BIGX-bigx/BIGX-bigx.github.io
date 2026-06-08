@@ -503,6 +503,57 @@ a:hover {
   text-transform: uppercase;
 }
 
+.category-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.category-mini-card {
+  min-height: 150px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.category-mini-card:hover {
+  border-color: #cbd5e1;
+  background: var(--soft);
+}
+
+.mini-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.mini-card-top span,
+.mini-tags span {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.category-mini-card h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
 .archive-group {
   padding-bottom: 20px;
   border-bottom: 1px solid var(--line);

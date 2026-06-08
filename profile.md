@@ -20,7 +20,7 @@ wide: true
           <span><strong>Tel</strong>：15265448029</span>
           <span><strong>Email</strong>：1874506042@qq.com</span>
           <span><strong>GitHub</strong>：<a href="{{ site.author.github }}">BIGX-bigx</a></span>
-          <span><strong>Blog</strong>：<a href="{{ '/' | relative_url }}">bigx-bigx.github.io</a></span>
+          <span><strong>Blog</strong>：<a href="{{ '/' | relative_url }}">BIGX-bigx.github.io</a></span>
       </div>
     </div>
 

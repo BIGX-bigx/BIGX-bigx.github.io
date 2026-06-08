@@ -17,47 +17,56 @@ wide: true
     <div class="resume-head">
       <h2>邵光熙</h2>
       <div class="resume-contact">
-        <span>GitHub：<a href="{{ site.author.github }}">BIGX-bigx</a></span>
-        <span>Blog：<a href="{{ '/' | relative_url }}">bigx-bigx.github.io</a></span>
+          <span><strong>Tel</strong>：15265448029</span>
+          <span><strong>Email</strong>：1874506042@qq.com</span>
+          <span><strong>GitHub</strong>：<a href="{{ site.author.github }}">BIGX-bigx</a></span>
+          <span><strong>Blog</strong>：<a href="{{ '/' | relative_url }}">bigx-bigx.github.io</a></span>
       </div>
     </div>
+
 
 
     <section class="resume-section">
       <h2>个人信息</h2>
       <ul>
-        <li>方向：Web 安全、CTF、比赛复现与安全学习记录</li>
-        <li>博客用途：整理个人经历、学习笔记、项目记录和比赛 Writeup</li>
-        <li>长期目标：形成稳定、可检索、可复盘的个人知识库</li>
+        <li>邵光熙，男，2007年出生</li>
+        <li>ID：BIGX</li>
+        <li>学习方向：WEB安全</li>
+        <li>三叶草安全技术小组(Syclover)成员</li>
       </ul>
     </section>
     
     <section class="resume-section">
       <h2>教育 / 学习经历</h2>
       <ul>
-        <li><strong>安全学习方向</strong>：Web 漏洞原理、代码审计、CTF 题目复现</li>
-        <li><strong>学习方式</strong>：比赛复盘、漏洞环境复现、文章归档、工具链整理</li>
+        <li>成都信息工程大学2025级本科在读</li>
       </ul>
     </section>
     
     <section class="resume-section">
-      <h2>比赛 / 实践经历</h2>
+      <h2>比赛经历</h2>
       <ul>
-        <li><strong>CTF 与安全练习</strong></li>
+        <li>2025年极客大挑战校内第二</li>
+        <li>2025年院CTF个人三等奖</li>
+        <li>跟随小组参加比赛</li>
       </ul>
-      <p>
-        记录参加比赛、复现题目、分析漏洞利用链和总结解题过程。后续可以把具体比赛名称、
-        时间、方向和成绩补充到这里。
-      </p>
     </section>
     
     <section class="resume-section">
       <h2>项目经历</h2>
+      
       <ul>
-        <li><strong>个人静态博客</strong></li>
+        <li><strong>腾讯黑客松Agent构建</strong></li>
       </ul>
       <p>
-        基于 GitHub Pages 与 Jekyll 搭建，用于发布 Profile、分类文章、标签归档和比赛复现内容。
+        主要负责知识库的构建：将各类文章转换成.md，并搭建RAG知识库
+      </p>
+      
+      <ul>
+        <li><strong>Openclaw课题组</strong></li>
+      </ul>
+      <p>
+        <li>对Openclaw的基础架构进行了解，并探索漏洞多发层面的发展趋势。基于漏洞发展的分析，开发了Openclaw-MultiScanner-plus多阶段信任边界扫描器</li>
       </p>
     </section>
     

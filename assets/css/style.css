@@ -221,6 +221,10 @@ a:hover {
   max-width: 760px;
 }
 
+.content-wide {
+  max-width: none;
+}
+
 .content h2 {
   margin-top: 34px;
   padding-top: 10px;
@@ -252,7 +256,7 @@ a:hover {
 
 .profile-grid {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
+  grid-template-columns: 300px minmax(720px, 1fr);
   gap: 56px;
   align-items: start;
 }

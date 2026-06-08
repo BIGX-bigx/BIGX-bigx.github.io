@@ -3,6 +3,7 @@ layout: page
 title: Profile
 description: "个人经历、项目和联系方式。"
 permalink: /profile/
+wide: true
 ---
 
 <section class="profile-grid">

@@ -289,6 +289,84 @@ a:hover {
   max-width: 720px;
 }
 
+.resume-panel {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+}
+
+.resume-head {
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.resume-head h2 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.resume-section {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-section:last-child {
+  border-bottom: 0;
+}
+
+.resume-section h2 {
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 18px;
+}
+
+.resume-section p {
+  margin: 6px 0 0;
+  color: #2f343b;
+}
+
+.resume-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.resume-section li {
+  margin: 4px 0;
+}
+
+.skill-list {
+  display: grid;
+  gap: 6px;
+  padding-left: 0 !important;
+  list-style: none;
+}
+
+.skill-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.skill-list li:last-child {
+  border-bottom: 0;
+}
+
 .clean-list {
   padding-left: 20px;
 }

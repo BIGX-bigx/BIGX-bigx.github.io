@@ -1,0 +1,31 @@
+title: BIGX
+description: "个人经历与比赛复现记录"
+url: "https://bigx-bigx.github.io"
+baseurl: ""
+lang: zh-CN
+timezone: Asia/Shanghai
+
+author:
+  name: BIGX
+  github: "https://github.com/BIGX-bigx"
+  avatar: "https://github.com/BIGX-bigx.png"
+
+permalink: /:categories/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: BIGX
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

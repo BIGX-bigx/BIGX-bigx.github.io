@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include nav.html %}
+    <main class="container page-shell">
+      {{ content }}
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <span>{{ site.title }}</span>
+        <span class="footer-dot">/</span>
+        <a href="{{ site.author.github }}">GitHub</a>
+      </div>
+    </footer>
+  </body>
+</html>

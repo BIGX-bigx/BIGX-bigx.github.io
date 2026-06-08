@@ -1,0 +1,11 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>HomePage</a>
+      <a href="{{ '/profile/' | relative_url }}" {% if page.url == '/profile/' %}class="active"{% endif %}>Profile</a>
+      <a href="{{ '/categories/' | relative_url }}" {% if page.url == '/categories/' %}class="active"{% endif %}>Categories</a>
+      <a href="{{ '/tags/' | relative_url }}" {% if page.url == '/tags/' %}class="active"{% endif %}>Tag</a>
+    </nav>
+  </div>
+</header>

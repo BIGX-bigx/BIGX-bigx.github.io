@@ -1,0 +1,32 @@
+---
+layout: page
+wide: true
+---
+
+{% assign category_name = page.category %}
+{% assign posts = site.categories[category_name] %}
+
+<div class="folder-back">
+  <a href="{{ '/categories/' | relative_url }}">← 返回 Categories</a>
+</div>
+
+{% if page.note %}
+  <p class="category-note">{{ page.note }}</p>
+{% endif %}
+
+{% if posts and posts.size > 0 %}
+  <div class="archive-list">
+    <section class="archive-group">
+      <ul>
+        {% for post in posts %}
+          <li>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+{% else %}
+  <p class="muted">这个分类下还没有文章。</p>
+{% endif %}

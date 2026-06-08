@@ -13,15 +13,15 @@ wide: true
     <p>CTF / 安全学习 / 比赛复现</p>
     <a class="button full" href="{{ site.author.github }}">GitHub</a>
   </aside>
-
   <div class="profile-main resume-panel">
     <div class="resume-head">
-      <h2>BIGX</h2>
+      <h2>邵光熙</h2>
       <div class="resume-contact">
         <span>GitHub：<a href="{{ site.author.github }}">BIGX-bigx</a></span>
         <span>Blog：<a href="{{ '/' | relative_url }}">bigx-bigx.github.io</a></span>
       </div>
     </div>
+
 
     <section class="resume-section">
       <h2>个人信息</h2>
@@ -31,7 +31,7 @@ wide: true
         <li>长期目标：形成稳定、可检索、可复盘的个人知识库</li>
       </ul>
     </section>
-
+    
     <section class="resume-section">
       <h2>教育 / 学习经历</h2>
       <ul>
@@ -39,7 +39,7 @@ wide: true
         <li><strong>学习方式</strong>：比赛复盘、漏洞环境复现、文章归档、工具链整理</li>
       </ul>
     </section>
-
+    
     <section class="resume-section">
       <h2>比赛 / 实践经历</h2>
       <ul>
@@ -50,7 +50,7 @@ wide: true
         时间、方向和成绩补充到这里。
       </p>
     </section>
-
+    
     <section class="resume-section">
       <h2>项目经历</h2>
       <ul>
@@ -60,7 +60,7 @@ wide: true
         基于 GitHub Pages 与 Jekyll 搭建，用于发布 Profile、分类文章、标签归档和比赛复现内容。
       </p>
     </section>
-
+    
     <section class="resume-section">
       <h2>技能清单</h2>
       <ul class="skill-list">

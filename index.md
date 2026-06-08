@@ -5,9 +5,9 @@ title: HomePage
 
 <section class="hero">
   <p class="eyebrow">Personal Blog</p>
-  <h1>记录个人经历，也复盘每一次比赛。</h1>
+  <h1>欢迎来到我的博客</h1>
   <p class="hero-text">
-    这里用于整理 Profile、比赛复现、学习笔记和阶段性总结。内容保持简洁、可检索、方便长期维护。
+    用于整理 Profile、比赛复现、学习笔记和阶段性总结
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/profile/' | relative_url }}">查看 Profile</a>

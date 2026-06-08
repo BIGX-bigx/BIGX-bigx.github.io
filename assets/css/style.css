@@ -510,29 +510,27 @@ a:hover {
 }
 
 .category-mini-card {
+  display: block;
   min-height: 150px;
   padding: 16px 18px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: #fff;
+  color: var(--text);
 }
 
 .category-mini-card:hover {
   border-color: #cbd5e1;
   background: var(--soft);
+  color: var(--text);
 }
 
 .mini-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
   margin-bottom: 14px;
   color: var(--muted);
   font-size: 12px;
 }
 
-.mini-card-top span,
 .mini-tags span {
   padding: 3px 8px;
   border: 1px solid var(--line);
@@ -551,7 +549,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 14px;
+  margin: 0 0 18px;
 }
 
 .archive-group {

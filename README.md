@@ -50,7 +50,7 @@ http://127.0.0.1:4000
 首次推送建议：
 
 ```bash
-git remote add origin https://github.com/BIGX-bigx/bigx.github.io.git
+git remote add origin https://github.com/BIGX-bigx/BIGX-bigx.github.io.git
 git branch -M main
 git add .
 git commit -m "Initialize Jekyll blog"

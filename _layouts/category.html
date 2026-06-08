@@ -15,17 +15,29 @@ wide: true
 {% endif %}
 
 {% if posts and posts.size > 0 %}
-  <div class="archive-list">
-    <section class="archive-group">
-      <ul>
-        {% for post in posts %}
-          <li>
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
+  <div class="category-card-list">
+    {% for post in posts %}
+      {% assign summary = post.excerpt | strip_html | strip_newlines | strip %}
+      <article class="category-post-card">
+        <div class="card-kicker">{{ post.date | date: "%Y-%m-%d" }}</div>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <p>
+          {% if summary != "" %}
+            {{ summary | truncate: 120 }}
+          {% else %}
+            {{ page.note | default: "点击进入阅读文章。" }}
+          {% endif %}
+        </p>
+        {% if post.tags and post.tags.size > 0 %}
+          <div class="card-tags">
+            {% for tag in post.tags %}
+              <span>{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <a class="read-link" href="{{ post.url | relative_url }}">Read</a>
+      </article>
+    {% endfor %}
   </div>
 {% else %}
   <p class="muted">这个分类下还没有文章。</p>

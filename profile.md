@@ -66,7 +66,9 @@ wide: true
         <li><strong>Openclaw课题组</strong></li>
       </ul>
       <p>
-        对Openclaw的基础架构进行了解，并探索漏洞多发层面的发展趋势\n
+        对Openclaw的基础架构进行了解，并探索漏洞多发层面的发展趋势
+      </p>
+      <p>
         基于漏洞发展的分析，开发了Openclaw-MultiScanner-plus多阶段信任边界扫描器
       </p>
     </section>

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Profile
-description: "个人经历、项目和联系方式。"
+description: "个人简历"
 permalink: /profile/
 wide: true
 ---
@@ -66,7 +66,8 @@ wide: true
         <li><strong>Openclaw课题组</strong></li>
       </ul>
       <p>
-        对Openclaw的基础架构进行了解，并探索漏洞多发层面的发展趋势。基于漏洞发展的分析，开发了Openclaw-MultiScanner-plus多阶段信任边界扫描器
+        对Openclaw的基础架构进行了解，并探索漏洞多发层面的发展趋势
+        基于漏洞发展的分析，开发了Openclaw-MultiScanner-plus多阶段信任边界扫描器
       </p>
     </section>
     

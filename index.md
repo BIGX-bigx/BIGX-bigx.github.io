@@ -26,26 +26,33 @@ title: HomePage
     if (!target) return;
 
     var text = "Welcome to my blog!";
-    var index = 0;
+    var typingMs = 1500;
+    var holdMs = 950;
+    var blankMs = 360;
+    var cycleMs = typingMs + holdMs + blankMs;
+    var startedAt = performance.now();
+    var lastValue = "";
 
-    function tick() {
-      target.textContent = text.slice(0, index);
+    function render(now) {
+      var elapsed = (now - startedAt) % cycleMs;
+      var nextValue = "";
 
-      if (index < text.length) {
-        index += 1;
-        setTimeout(tick, 90);
-        return;
+      if (elapsed < typingMs) {
+        var progress = elapsed / typingMs;
+        var count = Math.min(text.length, Math.floor(progress * (text.length + 1)));
+        nextValue = text.slice(0, count);
+      } else if (elapsed < typingMs + holdMs) {
+        nextValue = text;
       }
 
-      setTimeout(function () {
-        target.textContent = "";
-        setTimeout(function () {
-          index = 0;
-          setTimeout(tick, 450);
-        }, 120);
-      }, 900);
+      if (nextValue !== lastValue) {
+        target.textContent = nextValue;
+        lastValue = nextValue;
+      }
+
+      requestAnimationFrame(render);
     }
 
-    tick();
+    requestAnimationFrame(render);
   })();
 </script>

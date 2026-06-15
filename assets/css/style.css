@@ -133,9 +133,9 @@ a:hover {
 .welcome-corner {
   position: fixed;
   right: 36px;
-  bottom: 74px;
+  bottom: 86px;
   z-index: 20;
-  color: #111827;
+  color: #1f2937;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -145,11 +145,11 @@ a:hover {
 .welcome-corner::after {
   content: "";
   display: inline-block;
-  width: 8px;
+  width: 3px;
   height: 1.1em;
-  margin-left: 4px;
+  margin-left: 5px;
   vertical-align: -0.18em;
-  background: #111827;
+  background: #6b7280;
   animation: welcome-blink 1s steps(1) infinite;
 }
 
@@ -821,7 +821,7 @@ a:hover {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 12px;
   z-index: 15;
   padding: 20px 0;
   border-top: 1px solid var(--line);
@@ -868,7 +868,7 @@ a:hover {
 
   .welcome-corner {
     right: 18px;
-    bottom: 70px;
+    bottom: 82px;
     font-size: 14px;
   }
 

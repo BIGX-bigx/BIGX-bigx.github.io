@@ -5,3 +5,7 @@ categories: [Practice]
 tags: [XCTF,WEB]
 ---
 
+# SU_wms
+
+>简单的小0day，试试前台RCE吧
+

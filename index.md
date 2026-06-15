@@ -26,21 +26,29 @@ title: HomePage
     if (!target) return;
 
     var text = "Welcome to my blog!";
-    var index = 0;
+    var wrapper = target.parentElement;
+    var step = 0;
+    var center = Math.floor(text.length / 2);
 
     function tick() {
-      target.textContent = text.slice(0, index);
+      var left = Math.max(0, center - step);
+      var right = Math.min(text.length, center + step + (text.length % 2 === 0 ? 0 : 1));
+      target.textContent = text.slice(left, right);
 
-      if (index < text.length) {
-        index += 1;
+      if (left > 0 || right < text.length) {
+        step += 1;
         setTimeout(tick, 90);
         return;
       }
 
       setTimeout(function () {
-        target.textContent = "";
-        index = 0;
-        setTimeout(tick, 450);
+        wrapper.classList.add("welcome-flash");
+        setTimeout(function () {
+          target.textContent = "";
+          wrapper.classList.remove("welcome-flash");
+          step = 0;
+          setTimeout(tick, 450);
+        }, 130);
       }, 900);
     }
 

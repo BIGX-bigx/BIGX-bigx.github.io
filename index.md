@@ -27,31 +27,21 @@ title: HomePage
 
     var text = "Welcome to my blog!";
     var index = 0;
-    var deleting = false;
 
     function tick() {
       target.textContent = text.slice(0, index);
 
-      if (!deleting && index < text.length) {
+      if (index < text.length) {
         index += 1;
         setTimeout(tick, 90);
         return;
       }
 
-      if (!deleting && index === text.length) {
-        deleting = true;
-        setTimeout(tick, 1200);
-        return;
-      }
-
-      if (deleting && index > 0) {
-        index -= 1;
-        setTimeout(tick, 45);
-        return;
-      }
-
-      deleting = false;
-      setTimeout(tick, 500);
+      setTimeout(function () {
+        target.textContent = "";
+        index = 0;
+        setTimeout(tick, 450);
+      }, 900);
     }
 
     tick();

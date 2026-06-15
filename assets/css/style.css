@@ -140,12 +140,8 @@ a:hover {
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  text-align: center;
+  text-align: left;
   pointer-events: none;
-}
-
-.welcome-corner.welcome-flash {
-  opacity: 0;
 }
 
 .welcome-corner::after {

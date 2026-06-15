@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Categories
-description: "像文件夹一样按照分类浏览文章。"
+description: "按照文章大类来进行区分"
 permalink: /categories/
 wide: true
 ---

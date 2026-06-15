@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Tag
-description: "按照标签浏览文章。"
+description: "使用标签进行文章分类"
 permalink: /tags/
 ---
 

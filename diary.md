@@ -1,16 +1,18 @@
 ---
 layout: page
 title: Diary
-description: "单独入口的个人日记。"
+description: "日记"
 permalink: /diary/
 ---
 
-这里是 Diary 页面。
+- **26-6-15 Mon**
 
-这个页面不会放在顶部导航里，只能从 HomePage 的“书写 Diary”进入。
+早十英语睡过了头，下次一定注意。
 
-后续你可以直接编辑这个文件来写日记：
+下午没课，跟pky一起去了趟山姆，还是那儿的餐吧好吃啊😋
 
-```text
-E:\blog\diary.md
-```
+晚上回来就在调整blog，这次大改了一番，嘿嘿！
+
+Bypass disable_functions得继续整理，没整完
+
+奥对对，还有一件事，可恶啊发错信息到有学长的群里了，社死😭

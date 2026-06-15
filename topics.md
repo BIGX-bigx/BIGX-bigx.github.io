@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Topics
-description: "左侧选择组织方式，右侧按时间浏览最新文章。"
+description: "Here is the article page"
 permalink: /topics/
 wide: true
 ---
@@ -11,12 +11,12 @@ wide: true
     <a class="topics-aside-card" href="{{ '/categories/' | relative_url }}">
       <span>Folders</span>
       <h2>Categories</h2>
-      <p>像文件夹一样浏览文章。</p>
+      <p>Grouped by Theme</p>
     </a>
     <a class="topics-aside-card" href="{{ '/tags/' | relative_url }}">
       <span>Keywords</span>
       <h2>Tag</h2>
-      <p>用关键词快速定位内容。</p>
+      <p>Classify via Tags</p>
     </a>
   </aside>
 
@@ -53,7 +53,7 @@ wide: true
     var totalPages = Math.ceil(cards.length / pageSize);
 
     if (!pagination || cards.length <= pageSize) return;
-
+    
     function showPage(page) {
       currentPage = Math.max(1, Math.min(totalPages, page));
       cards.forEach(function (card, index) {
@@ -63,7 +63,7 @@ wide: true
       });
       renderPagination();
     }
-
+    
     function makeButton(label, page, active) {
       var button = document.createElement("button");
       button.type = "button";
@@ -74,7 +74,7 @@ wide: true
       });
       return button;
     }
-
+    
     function renderPagination() {
       pagination.innerHTML = "";
       pagination.appendChild(makeButton("Prev", currentPage - 1, false));
@@ -83,7 +83,7 @@ wide: true
       }
       pagination.appendChild(makeButton("Next", currentPage + 1, false));
     }
-
+    
     showPage(1);
   })();
 </script>

@@ -1,9 +1,10 @@
 ---
 layout: category
 title: Practice
-description: "XCTF 刷题与比赛复现"
+description: "CTF题记"
 permalink: /categories/practice/
 category: Practice
-note: "XCTF 刷题与比赛复现"
+note: "CTF刷题库"
 wide: true
 ---
+

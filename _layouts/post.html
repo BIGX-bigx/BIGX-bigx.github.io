@@ -2,19 +2,53 @@
 layout: default
 ---
 
-<article class="post">
-  <header class="post-header">
-    <p class="eyebrow">{{ page.categories | join: " / " }}</p>
-    <h1>{{ page.title }}</h1>
-    <div class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
-      {% if page.tags and page.tags.size > 0 %}
-        <span>·</span>
-        <span>{{ page.tags | join: ", " }}</span>
-      {% endif %}
+<div class="post-layout">
+  <article class="post">
+    <header class="post-header">
+      <p class="eyebrow">{{ page.categories | join: " / " }}</p>
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+        {% if page.tags and page.tags.size > 0 %}
+          <span>·</span>
+          <span>{{ page.tags | join: ", " }}</span>
+        {% endif %}
+      </div>
+    </header>
+    <div class="content post-content" id="post-content">
+      {{ content }}
     </div>
-  </header>
-  <div class="content">
-    {{ content }}
-  </div>
-</article>
+  </article>
+
+  <aside class="post-toc" id="post-toc" aria-label="文章大纲">
+    <p>Outline</p>
+    <nav id="post-toc-list"></nav>
+  </aside>
+</div>
+
+<script>
+  (function () {
+    var content = document.getElementById("post-content");
+    var toc = document.getElementById("post-toc");
+    var list = document.getElementById("post-toc-list");
+    if (!content || !toc || !list) return;
+
+    var headings = Array.prototype.slice.call(content.querySelectorAll("h2, h3"));
+    if (!headings.length) {
+      toc.hidden = true;
+      return;
+    }
+
+    headings.forEach(function (heading, index) {
+      if (!heading.id) {
+        heading.id = "heading-" + (index + 1);
+      }
+
+      var link = document.createElement("a");
+      link.href = "#" + heading.id;
+      link.textContent = heading.textContent;
+      link.className = "toc-" + heading.tagName.toLowerCase();
+      list.appendChild(link);
+    });
+  })();
+</script>

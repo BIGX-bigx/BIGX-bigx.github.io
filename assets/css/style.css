@@ -285,6 +285,55 @@ a:hover {
   white-space: nowrap;
 }
 
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) 240px;
+  gap: 72px;
+  align-items: start;
+}
+
+.post-layout .post {
+  min-width: 0;
+}
+
+.post-toc {
+  position: sticky;
+  top: 96px;
+  max-height: calc(100vh - 140px);
+  overflow: auto;
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+
+.post-toc p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.post-toc nav {
+  display: grid;
+  gap: 8px;
+}
+
+.post-toc a {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.post-toc a:hover {
+  color: var(--text);
+}
+
+.post-toc .toc-h3 {
+  padding-left: 14px;
+  font-size: 13px;
+}
+
 .page-header,
 .post-header {
   margin-bottom: 36px;
@@ -893,6 +942,14 @@ a:hover {
 
   .topics-aside {
     position: static;
+  }
+
+  .post-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .post-toc {
+    display: none;
   }
 }
 

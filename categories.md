@@ -11,9 +11,10 @@ wide: true
     {% for category in site.categories %}
       {% assign slug = category[0] | slugify %}
       {% assign meta = site.data.categories[slug] %}
+      {% assign category_page = site.pages | where: "category", category[0] | first %}
       <a class="folder-card simple-card" href="{{ '/categories/' | append: slug | append: '/' | relative_url }}">
-        <h2>{{ meta.title | default: category[0] }}</h2>
-        <p>{{ meta.description | default: "暂无备注" }}</p>
+        <h2>{{ category_page.title | default: meta.title | default: category[0] }}</h2>
+        <p>{{ category_page.description | default: meta.description | default: "暂无备注" }}</p>
       </a>
     {% endfor %}
   </div>

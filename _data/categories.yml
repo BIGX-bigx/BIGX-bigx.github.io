@@ -1,3 +1,6 @@
 practice:
   title: Practice
-  description: "XCTF 刷题与比赛复现"
+  description: "CTF题记"
+xctf:
+  title: XCTF
+  description: "XCTF联赛复现"

@@ -308,7 +308,7 @@ a:hover {
 .post-toc p {
   margin: 0 0 14px;
   padding-bottom: 8px;
-  border-bottom: 2px solid var(--text);
+  border-bottom: 1px solid var(--text);
   color: var(--text);
   font-size: 14px;
   font-weight: 800;
@@ -324,7 +324,7 @@ a:hover {
 
 .post-toc a {
   color: #374151;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.45;
 }
 
@@ -334,7 +334,7 @@ a:hover {
 
 .post-toc .toc-h3 {
   padding-left: 18px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
 }
 

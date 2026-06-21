@@ -65,6 +65,15 @@ git commit -m "Add new writeup"
 git push
 ```
 
+或者
+
+```bash
+cd /d E:\blog
+git add .
+git commit -m "Update blog"
+git -c http.proxy=http://127.0.0.1:7898 -c https.proxy=http://127.0.0.1:7898 push
+```
+
 ## GitHub Pages 设置
 
 进入仓库 `Settings -> Pages`：

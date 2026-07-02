@@ -8,7 +8,6 @@ source_note: "JAVA安全/2.反射.md"
 permalink: /web_note/java-security/02/
 render_with_liquid: false
 ---
-{% raw %}
 # 1. 概念
 
 > 可以将Java这种静态语言附上"**动态特性**"的机制
@@ -455,7 +454,7 @@ clazz.getConstructor(String[].class);
 Class clazz = Class.forName("java.lang.ProcessBuilder");
 ((ProcessBuilder)
     clazz.getConstructor(String[].class)
-         .newInstance(new String[][]{{"calc.exe"}})
+         .newInstance(new String[][]&#123;&#123;"calc.exe"&#125;&#125;)
 ).start();
 ```
 
@@ -575,7 +574,7 @@ clazz.getMethod("start")
 Class clazz = Class.forName("java.lang.ProcessBuilder");
 ((ProcessBuilder)
     clazz.getConstructor(String[].class)
-         .newInstance(new String[][]{{"calc.exe"}})
+         .newInstance(new String[][]&#123;&#123;"calc.exe"&#125;&#125;)
 ).start();
 ```
 
@@ -646,4 +645,3 @@ Runtime.exec("calc.exe") / ProcessBuilder.start()
 
 
 
-{% endraw %}

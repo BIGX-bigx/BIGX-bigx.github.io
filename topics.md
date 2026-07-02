@@ -22,20 +22,8 @@ wide: true
 
   <section class="topics-post-panel">
     <div class="topics-posts" id="topics-posts">
-      {% assign suctf_post = site.posts | where: "title", "SUCTF复现记" | first %}
-      {% assign two_exercise_post = site.posts | where: "title", "突击二小题复现" | first %}
-      {% if suctf_post %}
-        {% assign post = suctf_post %}
-        {% include topics-post-card.html %}
-      {% endif %}
-      {% if two_exercise_post %}
-        {% assign post = two_exercise_post %}
-        {% include topics-post-card.html %}
-      {% endif %}
       {% for post in site.posts %}
-        {% if post.title != "SUCTF复现记" and post.title != "突击二小题复现" %}
-          {% include topics-post-card.html %}
-        {% endif %}
+        {% include topics-post-card.html %}
       {% endfor %}
     </div>
     <nav class="topics-pagination" aria-label="Post pagination" id="topics-pagination"></nav>

@@ -41,6 +41,7 @@ public class ReflectionDemo {
         method.invoke(obj);
     }
 }
+
 ```
 
 - 获取类的方法：**`forName`**
@@ -73,10 +74,12 @@ public class ReflectionDemo {
 **forName** 对于攻击者来说是最有利的———正常情况下，除了系统类，如果要拿到一个类，需要先 `import`。而使用 `forName` 就不需要，因此可以在运行时动态加载任意类，这在沙盒绕过和漏洞利用中极为关键
 
 ```java
+
 # 绕沙盒示例
 // 上下文中只有一个 Integer 类型的数字
 // 如何拿到可以执行命令的 Runtime 类？
 getClass().forName("java.lang.Runtime") 
+
 ```
 
 ---
@@ -94,8 +97,10 @@ getClass().forName("java.lang.Runtime")
 
 ```java
 Class.forName(className)
+
         ||
 Class.forName(className, true, currentLoader)
+
 ```
 
 ---
@@ -131,6 +136,7 @@ public class TrainPrint {
         System.out.printf("Initial %s\n", this.getClass());
     }
 }
+
 ```
 
 **执行顺序**：`static {}` → `{}` → `构造函数`
@@ -147,6 +153,7 @@ eg_code:
 public void ref(String name) throws Exception {
     Class.forName(name);  // name 参数可控
 }
+
 ```
 
 其中name参数可控—>手动编写恶意类，恶意代码放入其中 `static{}`，等待forName加载这个类
@@ -167,6 +174,7 @@ public class TouchFile {
         }
     }
 }
+
 ```
 
 逻辑上就这样通了，具体关于恶意类如何传入，涉及ClassLoader，后续讲解
@@ -192,6 +200,7 @@ Java的普通类 C1 中支持编写内部类 C2 ，而在编译的时候，会�
 ```java
 Class clazz = Class.forName("com.example.Dog");
 Object obj = clazz.newInstance();  // 调用无参构造函数
+
 ```
 
 **`newInstance()`** 的作用就是调用这个类的**无参构造函数**
@@ -208,6 +217,7 @@ Object obj = clazz.newInstance();  // 调用无参构造函数
 ```java
 Class clazz = Class.forName("java.lang.Runtime");
 clazz.getMethod("exec", String.class).invoke(clazz.newInstance(), "id");
+
 ```
 
 直接这样执行命令会报错
@@ -215,6 +225,7 @@ clazz.getMethod("exec", String.class).invoke(clazz.newInstance(), "id");
 ```
 IllegalAccessException: Class can not access a member of class
 java.lang.Runtime with modifiers "private"
+
 ```
 
 原因就是说的类型二：Runtime 类的构造方法是私有的
@@ -240,6 +251,7 @@ public class TrainDB {
         // 建立连接的代码...
     }
 }
+
 ```
 
 像这样，只有类初始化的时候会执行**一次**构造函数，后面只能通过 **`getInstance`** 获取这个对象，避免建立多个数据库连接
@@ -249,6 +261,7 @@ public class TrainDB {
 ```java
 Class clazz = Class.forName("java.lang.Runtime");
 clazz.getMethod("exec",String.class).invoke(clazz.getMethod("getRuntime").invoke(clazz),"calc.exe");
+
 ```
 
 ---
@@ -263,6 +276,7 @@ Method execMethod = clazz.getMethod("exec", String.class);
 Method getRuntimeMethod = clazz.getMethod("getRuntime");
 Object runtime = getRuntimeMethod.invoke(clazz);
 execMethod.invoke(runtime, "calc.exe");
+
 ```
 
 分行讲解：
@@ -284,6 +298,7 @@ Method execMethod = clazz.getMethod("exec", String.class);
 // 第五步：调用 exec，传入要执行的命令
 // exec 是普通方法，invoke 第一个参数传实例对象
 execMethod.invoke(runtime, "calc.exe");//calc.exe这里填写命令
+
 ```
 
 ---
@@ -308,6 +323,7 @@ eg_code:
 // 格式：getMethod(方法名, 参数类型1.class, 参数类型2.class, ...)
 clazz.getMethod("exec", String.class)
 // 表示：获取名为 exec，且参数类型是 String 的方法
+
 ```
 
 `Runtime`是单例模式，提供了 `getRuntime()` 静态方法获取实例，所以说能拿到实例并调用 `exec()`，即可以用`Runtime.exec()`来执行命令
@@ -339,14 +355,17 @@ clazz.getMethod("exec", String.class)
         对象.方法(参数1, 参数2, ...)
 反射调用：
         方法.invoke(对象, 参数1, 参数2, ...)
+
 ```
 
 eg_code:
 
 ```
 obj.exec("id")
+
     ||
 execMethod.invoke(obj, "id")
+
 ```
 
 # 5. 调用构造方法
@@ -408,6 +427,7 @@ execMethod.invoke(obj, "id")
 public ProcessBuilder(List<String> command)
 
 public ProcessBuilder(String... command)
+
 ```
 
 - **使用构造函数一(List参数)**
@@ -423,6 +443,7 @@ Class clazz = Class.forName("java.lang.ProcessBuilder");
 Class clazz = Class.forName("java.lang.ProcessBuilder");
 clazz.getMethod("start").invoke(clazz.getConstructor(List.class)
       .newInstance(Arrays.asList("calc.exe")));
+
 ```
 
 - **使用构造函数二(可变参数)**
@@ -435,6 +456,7 @@ Java 编译时将可变<u>参数</u>编译成一个<u>数组</u>，以下两种�
 public void hello(String[] names) {}
 public void hello(String... names) {}
 // 二者底层完全相同，是同一个方法，不构成重载
+
 ```
 
 **对反射的影响**：
@@ -456,6 +478,7 @@ Class clazz = Class.forName("java.lang.ProcessBuilder");
     clazz.getConstructor(String[].class)
          .newInstance(new String[][]&#123;&#123;"calc.exe"&#125;&#125;)
 ).start();
+
 ```
 
 # 6. 私有方法和构造方法的调用
@@ -496,6 +519,7 @@ Class clazz = Class.forName("java.lang.ProcessBuilder");
 method.setAccessible(true);       // 私有方法解锁
 constructor.setAccessible(true);  // 私有构造方法解锁
 field.setAccessible(true);        // 私有字段解锁
+
 ```
 
 ## 6.2 示例
@@ -507,6 +531,7 @@ Class clazz = Class.forName("java.lang.Runtime");
 Constructor m = clazz.getDeclaredConstructor();
 m.setAccessible(true);
 clazz.getMethod("exec", String.class).invoke(m.newInstance(), "calc.exe");
+
 ```
 
 详细解释一下
@@ -525,6 +550,7 @@ Object runtime = m.newInstance();
 
 // 调用 exec 执行命令
 clazz.getMethod("exec", String.class).invoke(runtime, "calc.exe");
+
 ```
 
 这样就绕过了单例模式的限制，不需要通过 `getRuntime()` 就能直接获得 `Runtime` 实例
@@ -544,6 +570,7 @@ clazz.getMethod("exec", String.class).invoke(runtime, "calc.exe");
 Class clazz = Class.forName("java.lang.Runtime");
 clazz.getMethod("exec", String.class)
      .invoke(clazz.getMethod("getRuntime").invoke(clazz), "calc.exe");
+
 ```
 
 - **Runtime.exec（通过私有构造方法）**
@@ -554,6 +581,7 @@ Class clazz = Class.forName("java.lang.Runtime");
 Constructor c = clazz.getDeclaredConstructor();
 c.setAccessible(true);
 clazz.getMethod("exec", String.class).invoke(c.newInstance(), "calc.exe");
+
 ```
 
 - **ProcessBuilder（List 参数构造函数，完全反射）**
@@ -566,6 +594,7 @@ clazz.getMethod("start")
          clazz.getConstructor(List.class)
               .newInstance(Arrays.asList("calc.exe"))
      );
+
 ```
 
 - **ProcessBuilder（String[] 可变参数构造函数）**
@@ -576,6 +605,7 @@ Class clazz = Class.forName("java.lang.ProcessBuilder");
     clazz.getConstructor(String[].class)
          .newInstance(new String[][]&#123;&#123;"calc.exe"&#125;&#125;)
 ).start();
+
 ```
 
 ## 利用点
@@ -616,6 +646,7 @@ execMethod.invoke(runtime, "calc.exe");
     ↓
 【最终执行点：命令执行】
 Runtime.exec("calc.exe") / ProcessBuilder.start()
+
 ```
 
 ## 防御
@@ -626,6 +657,7 @@ Runtime.exec("calc.exe") / ProcessBuilder.start()
 3. 反序列化场景中使用 ObjectInputFilter（Java 9+）限制可反序列化的类
 4. 注意 static {} 的执行时机，避免在静态代码块中执行危险操作
 5. setAccessible 可以绕过所有访问控制，代码审计时重点关注
+
 ```
 
 

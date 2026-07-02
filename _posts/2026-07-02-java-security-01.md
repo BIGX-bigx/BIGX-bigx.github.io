@@ -23,6 +23,7 @@ render_with_liquid: false
 10 异常处理
 11 常用类与集合框架
 12 JVM 运行机制
+
 ```
 
 ------
@@ -45,6 +46,7 @@ public class Welcome {
         System.out.println("Hello Java");
     }
 }
+
 ```
 
 逐行拆解：
@@ -63,6 +65,7 @@ public class Welcome {
         系统类 标准输出   打印方法
     }
 }
+
 ```
 
 ## 1.3 注意点
@@ -79,18 +82,21 @@ public class Welcome {
 
 ```
 //
+
 ```
 
 - **多行注释**
 
 ```
 /* ... */
+
 ```
 
 - **文档注释**
 
 ```
 /** ... */
+
 ```
 
 ## 1.5 标识
@@ -105,6 +111,7 @@ Java 所有组成部分（类名、变量名、方法名）都需要名字，统
 ```
 合法：age  $salary  _value  __1_value
 非法：123abc  -salary  class（关键字）
+
 ```
 
 ## 1.6 访问修饰符
@@ -216,6 +223,7 @@ Java（编译+解释）：
 
 优势："一次编写，到处运行"（Write Once, Run Anywhere）
 安全关注：.class 文件可以被反编译（javap / jadx / cfr）还原为接近源代码的形式
+
 ```
 
 <img src="/assets/images/web-note/web-note-008.png" alt="JAVA区别" style="zoom:150%;" />
@@ -244,6 +252,7 @@ float f = 3.14f;    // float 字面量需要加 f，否则默认是 double
 int hex = 0xFF;     // 十六进制字面量
 int bin = 0b1010;   // 二进制字面量（Java 7+）
 int big = 1_000_000; // 下划线分隔数字（Java 7+，提高可读性）
+
 ```
 
 ## 2.2 引用类型（Reference Type）
@@ -270,6 +279,7 @@ int[] arr1 = {1, 2, 3};
 int[] arr2 = arr1;     // 复制引用（地址），arr1 和 arr2 指向同一个数组
 arr2[0] = 99;
 System.out.println(arr1[0]); // 99，受影响（同一个堆对象）
+
 ```
 
 ## 2.3 类型转换
@@ -284,6 +294,7 @@ double d = i;    // 自动转换，安全
 
 char c = 'A';
 int ascii = c;   // char 自动转为 int，得到 65
+
 ```
 
 ### 强制类型转换（显式，大转小，可能丢失精度）
@@ -294,6 +305,7 @@ int i = (int) d;    // 强制转换，结果为 3（截断小数，不四舍五�
 
 int big = 300;
 byte b = (byte) big; // 强制转换，300 超出 byte 范围，结果为 44（截断高位）
+
 ```
 
 ### 字符串转换
@@ -313,6 +325,7 @@ boolean b = Boolean.parseBoolean("true"); // true
 
 // 注意：parseXxx 方法在字符串格式不正确时抛出 NumberFormatException
 // 这是 Web 应用中常见的异常，与输入验证相关
+
 ```
 
 ------
@@ -335,6 +348,7 @@ x++;   // x = 6（后置：先使用再自增）
 ++x;   // x = 7（前置：先自增再使用）
 int y = x++;  // y = 7，x = 8（先把 x 赋给 y，再 x 自增）
 int z = ++x;  // z = 9，x = 9（先 x 自增，再赋给 z）
+
 ```
 
 ## 3.2 比较与逻辑运算符
@@ -345,6 +359,7 @@ int z = ++x;  // z = 9，x = 9（先 x 自增，再赋给 z）
 
 // 逻辑运算符
 &&   // 短路与：左边为 false 时不计算右边
+
 ||   // 短路或：左边为 true 时不计算右边
 !    // 非
 
@@ -352,16 +367,19 @@ int z = ++x;  // z = 9，x = 9（先 x 自增，再赋给 z）
 String s = null;
 if (s != null && s.equals("admin")) { }   // 安全：s 为 null 时短路，不会 NullPointerException
 if (s.equals("admin") && s != null) { }   // 危险：s 为 null 时先调用 equals，NPE
+
 ```
 
 ## 3.3 位运算符
 
 ```java
 &    // 按位与
+
 |    // 按位或
 ^    // 按位异或（相同为 0，不同为 1）
 ~    // 按位取反
 <<   // 左移（乘以 2 的幂）
+
 >>   // 右移（除以 2 的幂，保留符号位）
 >>>  // 无符号右移（高位补 0）
 
@@ -375,6 +393,7 @@ System.out.println(a << 1);  // 0b10100 = 20（左移1位 = ×2）
 
 // 安全关注：加密算法、哈希计算中大量使用位运算
 // 理解位运算有助于分析 Java 中的加密实现
+
 ```
 
 ## 3.4 三元运算符与 instanceof
@@ -392,6 +411,7 @@ if (obj instanceof String) {
 
 // 安全关注：instanceof 在反序列化漏洞分析中非常重要
 // 很多反序列化利用链中会用 instanceof 检查对象类型
+
 ```
 
 ------
@@ -429,6 +449,7 @@ switch (day) {
 }
 
 // switch 支持的类型：byte short int char String enum（注意：不支持 long double）
+
 ```
 
 ## 4.2 循环语句
@@ -471,6 +492,7 @@ for (int x = 0; x < 3; x++) {
         System.out.println(x + "," + y);
     }
 }
+
 ```
 
 ------
@@ -494,6 +516,7 @@ System.out.println(arr2.length);  // 5（注意是属性，不是方法，没有
 
 // 越界访问会抛出 ArrayIndexOutOfBoundsException
 // 这是 Java 代码审计中需要关注的异常类型
+
 ```
 
 ## 5.2 多维数组
@@ -517,6 +540,7 @@ for (int r = 0; r < matrix2.length; r++) {
     }
     System.out.println();
 }
+
 ```
 
 ## 5.3 Arrays 工具类
@@ -533,6 +557,7 @@ int[] copy = Arrays.copyOf(arr, 3);      // 复制前3个元素
 int[] copy2 = Arrays.copyOfRange(arr, 1, 4); // 复制下标1~3
 Arrays.fill(arr, 0);                     // 全部填充为0
 boolean eq = Arrays.equals(arr, copy);  // 比较两个数组是否相等
+
 ```
 
 ------
@@ -555,6 +580,7 @@ public class Dog {
     // 常量
     static final String SPECIES = "Canis lupus familiaris";
 }
+
 ```
 
 ## 6.2 构造方法
@@ -583,6 +609,7 @@ public class Dog {
         this(name, 0);  // 调用同类的另一个构造方法（必须是第一行）
     }
 }
+
 ```
 
 **构造方法特点**：
@@ -617,6 +644,7 @@ public class Main {
         System.out.println(Dog.SPECIES);
     }
 }
+
 ```
 
 ## 6.4 封装（Getter / Setter）
@@ -660,6 +688,7 @@ public class Dog {
         return "Dog{name='" + name + "', age=" + age + "}";
     }
 }
+
 ```
 
 ## 6.5 this 关键字
@@ -685,6 +714,7 @@ public class Dog {
         registry.add(this);  // 把当前 Dog 对象传进去
     }
 }
+
 ```
 
 ## 6.6 static 关键字
@@ -719,6 +749,7 @@ public class Counter {
 Counter c1 = new Counter("A");
 Counter c2 = new Counter("B");
 System.out.println(Counter.getCount());  // 2
+
 ```
 
 > **安全关注**：静态代码块在类加载时自动执行，这是 Java 反序列化利用链中的重要执行点。
@@ -740,6 +771,7 @@ public void printInfo(String msg) {
     System.out.println(msg);
     // void 方法可以有空的 return; 语句，也可以没有
 }
+
 ```
 
 ## 7.2 方法重载（Overload）
@@ -763,6 +795,7 @@ public class Calculator {
     // 错误示例：仅返回值不同不构成重载，编译报错
     // public double add(int a, int b) { return a + b; }
 }
+
 ```
 
 ## 7.3 参数传递机制（值传递）
@@ -790,6 +823,7 @@ modify(nums);
 System.out.println(nums[0]);  // 99，受影响
 replace(nums);
 System.out.println(nums[0]);  // 99，不受影响
+
 ```
 
 ## 7.4 可变参数（Varargs）
@@ -809,6 +843,7 @@ System.out.println(sum(1, 2, 3, 4, 5)); // 15
 System.out.println(sum());              // 0
 
 // 可变参数本质是数组，必须是方法参数列表的最后一个
+
 ```
 
 ## 7.5 递归
@@ -822,6 +857,7 @@ public static long factorial(int n) {
 
 // 递归必须有终止条件，否则导致 StackOverflowError
 // 安全关注：恶意输入导致深度递归 → 消耗大量栈空间 → 栈溢出 → DoS
+
 ```
 
 ------
@@ -872,6 +908,7 @@ Dog dog = new Dog("Tom", 3, "拉布拉多");
 dog.eat();    // 继承自 Animal
 dog.sleep();  // 继承自 Animal
 dog.bark();   // Dog 自己的方法
+
 ```
 
 ## 8.2 super 关键字
@@ -893,6 +930,7 @@ public class Dog extends Animal {
     // ③ 访问父类的成员变量（当父类和子类有同名变量时）
     // super.name 访问父类的 name
 }
+
 ```
 
 ## 8.3 方法重写（Override）
@@ -911,6 +949,7 @@ public class Cat extends Animal {
         System.out.println(name + " 优雅地吃猫粮");
     }
 }
+
 ```
 
 **重载 vs 重写**：
@@ -950,6 +989,7 @@ if (a1 instanceof Dog) {
 
 // 注意：直接强转不安全，若实际类型不匹配则抛出 ClassCastException
 // 这是代码审计中的一个关注点
+
 ```
 
 ## 8.5 final 类与 final 方法
@@ -965,6 +1005,7 @@ public class Animal {
         System.out.println("呼吸");  // 所有动物都一样，不允许重写
     }
 }
+
 ```
 
 ------
@@ -1013,6 +1054,7 @@ public class Circle extends Shape {
         return 2 * Math.PI * radius;
     }
 }
+
 ```
 
 ## 9.2 接口（interface）
@@ -1057,6 +1099,7 @@ public class Bird implements Flyable {
 public class FlyingFish extends Fish implements Flyable, Swimmable {
     // 必须实现所有接口的所有抽象方法
 }
+
 ```
 
 ## 9.3 抽象类 vs 接口
@@ -1097,6 +1140,7 @@ Throwable（所有异常和错误的根类）
         ├── FileNotFoundException     → 文件不存在
         ├── ClassNotFoundException    → 类未找到（反序列化相关）
         └── SQLException              → 数据库错误
+
 ```
 
 ## 10.2 try-catch-finally
@@ -1121,6 +1165,7 @@ try {
     // 通常用于资源释放（关闭文件、数据库连接等）
     System.out.println("finally 一定执行");
 }
+
 ```
 
 ## 10.3 throw 与 throws
@@ -1147,6 +1192,7 @@ try {
 } catch (IOException e) {
     e.printStackTrace();
 }
+
 ```
 
 ## 10.4 自定义异常
@@ -1168,6 +1214,7 @@ public class AuthException extends RuntimeException {
 
 // 使用
 throw new AuthException("认证失败，用户不存在", 401);
+
 ```
 
 ## 10.5 try-with-resources（Java 7+）
@@ -1185,6 +1232,7 @@ try (FileReader fr = new FileReader("/path/to/file");
     e.printStackTrace();
 }
 // 离开 try 块后，br 和 fr 自动调用 close() 方法
+
 ```
 
 ------
@@ -1229,6 +1277,7 @@ String msg = String.format("Name: %s, Age: %d", "Tom", 25);
 // 字符串与字节数组转换（与编码/加密相关）
 byte[] bytes = s.getBytes("UTF-8");     // 字符串 → 字节数组
 String str = new String(bytes, "UTF-8"); // 字节数组 → 字符串
+
 ```
 
 ## 11.2 StringBuilder 与 StringBuffer
@@ -1248,6 +1297,7 @@ String result = sb.toString();
 
 // StringBuffer：可变，线程安全（方法都是 synchronized），多线程用
 StringBuffer sbf = new StringBuffer("Hello");
+
 ```
 
 ## 11.3 集合框架
@@ -1301,6 +1351,7 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
 // TreeMap：有序 Map（按键排序）
 Map<String, Integer> treeMap = new TreeMap<>();
+
 ```
 
 ## 11.4 泛型
@@ -1334,6 +1385,7 @@ public <T> T getFirst(T[] arr) {
 List<?> unknownList         // 任意类型
 List<? extends Number>      // Number 及其子类（上界通配符）
 List<? super Integer>       // Integer 及其父类（下界通配符）
+
 ```
 
 ------
@@ -1355,6 +1407,7 @@ JVM 内存结构
     └── 程序计数器          ← 记录当前线程执行的字节码行号
     ↓ 执行引擎（解释器 + JIT编译器）
 机器码执行
+
 ```
 
 ## 12.2 类加载机制（安全重点）
@@ -1368,6 +1421,7 @@ JVM 内存结构
 准备：为静态变量分配内存，赋默认值（0 / null / false）
 解析：将符号引用替换为直接引用（内存地址）
 初始化：执行静态代码块和静态变量赋值（static {}）
+
 ```
 
 **双亲委派模型**（安全关注点）：
@@ -1389,6 +1443,7 @@ AppClassLoader（应用类加载器）← 加载用户的 classpath 下的类
 防止用户伪造核心类（如伪造 java.lang.String）破坏 JVM
 Java 类隔离漏洞（ClassLoader 隔离失效）是一类安全问题
 反序列化中的类查找依赖 ClassLoader，理解类加载是分析漏洞的基础
+
 ```
 
 ## 12.3 JVM 内存区域（与安全的关系）
@@ -1407,6 +1462,7 @@ Java 类隔离漏洞（ClassLoader 隔离失效）是一类安全问题
 // 栈（JVM Stack）
 // 每个方法调用对应一个栈帧，存储局部变量、操作数栈
 // 安全关注：StackOverflowError（递归过深）→ DoS 攻击
+
 ```
 
 ## 12.4 垃圾回收（GC）
@@ -1426,6 +1482,7 @@ SoftReference<Object> softRef = new SoftReference<>(new Object());
 WeakReference<Object> weakRef = new WeakReference<>(new Object());
 
 // 虚引用（Phantom Reference）：仅用于跟踪 GC 活动
+
 ```
 
 ## 12.5 序列化与反序列化基础（安全核心）
@@ -1462,6 +1519,7 @@ ByteArrayInputStream bais = new ByteArrayInputStream(data);
 ObjectInputStream ois = new ObjectInputStream(bais);
 User restored = (User) ois.readObject();  // 字节流还原为对象
 // password 为 null（transient 不序列化）
+
 ```
 
 **安全关注**：
@@ -1475,6 +1533,7 @@ readObject() 会自动调用被反序列化对象的 readObject 方法（如果�
 - 序列化数据以 0xACED 0x0005 开头（JAVA 序列化魔数）
 - Base64 编码后以 rO0AB 开头
 - 这是 Java 反序列化漏洞的入口特征
+
 ```
 
 ## 12.6 反射机制（安全核心）
@@ -1519,6 +1578,7 @@ Method getRuntime = runtime.getMethod("getRuntime");
 Object rt = getRuntime.invoke(null);
 Method exec = runtime.getMethod("exec", String.class);
 exec.invoke(rt, "calc.exe");  // 通过反射执行命令
+
 ```
 
 ------
@@ -1545,12 +1605,14 @@ exec.invoke(rt, "calc.exe");  // 通过反射执行命令
 
 ```
 Math.sqrt(a * a )
+
 ```
 
 平方差
 
 ```
 Math.PI
+
 ```
 
 代替Π（圆的pai）
@@ -1563,36 +1625,42 @@ Math.PI
         }
         return res;
     }
+
 ```
 
 计算阶乘的工具方法
 
 ```
 Math.tan
+
 ```
 
 求tan
 
 ```
 (""%.nf",a)
+
 ```
 
 a保留n位小数
 
 ```
 Math.pow(2,3)
+
 ```
 
 求2的三次方
 
 ```
 s.substring(0,1).toUpperCase()
+
 ```
 
 将字符串s的首字母大写
 
 ```
 s.substring(0,1).toUpperCase().charAt(0);
+
 ```
 
 将字符串s的首字母大写，并将第一个字符取出来（类型从String变成char）
@@ -1606,6 +1674,7 @@ for(int i = 0; i < arr.length; i++){
 }
 
 value = result;
+
 ```
 
 把原来的字符串，变成每个字符对应的 Unicode 码字符串

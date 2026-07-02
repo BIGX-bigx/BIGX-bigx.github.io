@@ -4,7 +4,7 @@ date: 2026-07-02 16:41:03 +0800
 categories: [WEB_Note]
 tags: ["WEB", "JAVA安全", "Java"]
 web_folder: "JAVA安全"
-source_note: "JAVA安全\1.Java语言学习.md"
+source_note: "JAVA安全/1.Java语言学习.md"
 permalink: /web_note/java-security/01/
 render_with_liquid: false
 ---

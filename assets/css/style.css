@@ -843,6 +843,10 @@ a:hover {
   color: var(--text);
 }
 
+.topics-post-card[hidden] {
+  display: none;
+}
+
 .topics-post-card:hover {
   border-color: #cbd5e1;
   background: var(--soft);

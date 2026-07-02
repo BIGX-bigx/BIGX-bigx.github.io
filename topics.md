@@ -24,7 +24,7 @@ wide: true
     <div class="topics-posts" id="topics-posts">
       {% for post in site.posts %}
         {% assign summary = post.excerpt | strip_html | strip_newlines | strip %}
-        <a class="topics-post-card" href="{{ post.url | relative_url }}" data-post-card>
+        <a class="topics-post-card" href="{{ post.url | relative_url }}" data-post-card{% if forloop.index > 10 %} style="display: none;"{% endif %}>
           <div class="topics-post-meta">{{ post.date | date: "%Y-%m-%d" }}{% if post.categories and post.categories.size > 0 %} / {{ post.categories | join: " / " }}{% endif %}</div>
           <h2>{{ post.title }}</h2>
           {% if summary != "" %}
@@ -59,7 +59,7 @@ wide: true
       cards.forEach(function (card, index) {
         var start = (currentPage - 1) * pageSize;
         var end = start + pageSize;
-        card.hidden = index < start || index >= end;
+        card.style.display = index >= start && index < end ? "" : "none";
       });
       renderPagination();
     }

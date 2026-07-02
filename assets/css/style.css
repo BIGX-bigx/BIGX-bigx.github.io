@@ -685,6 +685,57 @@ a:hover {
   margin: 0 0 18px;
 }
 
+.web-note-folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.web-note-folder-card {
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.web-note-folder-card:hover {
+  border-color: #cbd5e1;
+  background: var(--soft);
+}
+
+.web-note-folder-card h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.web-note-folder-card p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.web-note-mini-list {
+  display: grid;
+  gap: 8px;
+}
+
+.web-note-mini-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 0;
+  border-top: 1px solid #f3f4f6;
+}
+
+.web-note-mini-list span {
+  min-width: 0;
+}
+
+.web-note-mini-list time {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .topics-layout {
   display: grid;
   grid-template-columns: 270px minmax(0, 1fr);

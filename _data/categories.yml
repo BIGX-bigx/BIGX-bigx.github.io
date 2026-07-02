@@ -4,3 +4,6 @@ practice:
 xctf:
   title: XCTF
   description: "XCTF联赛复现"
+web_note:
+  title: WEB_Note
+  description: "WEB安全笔记"

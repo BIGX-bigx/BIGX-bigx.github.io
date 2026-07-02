@@ -834,6 +834,10 @@ a:hover {
   gap: 14px;
 }
 
+.topics-posts:not(.topics-ready) .topics-post-card:nth-of-type(n+11) {
+  display: none;
+}
+
 .topics-post-card {
   display: block;
   padding: 24px;

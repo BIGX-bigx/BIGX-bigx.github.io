@@ -22,22 +22,20 @@ wide: true
 
   <section class="topics-post-panel">
     <div class="topics-posts" id="topics-posts">
+      {% assign suctf_post = site.posts | where: "title", "SUCTF复现记" | first %}
+      {% assign two_exercise_post = site.posts | where: "title", "突击二小题复现" | first %}
+      {% if suctf_post %}
+        {% assign post = suctf_post %}
+        {% include topics-post-card.html %}
+      {% endif %}
+      {% if two_exercise_post %}
+        {% assign post = two_exercise_post %}
+        {% include topics-post-card.html %}
+      {% endif %}
       {% for post in site.posts %}
-        {% assign summary = post.excerpt | strip_html | strip_newlines | strip %}
-        <a class="topics-post-card" href="{{ post.url | relative_url }}" data-post-card{% if forloop.index > 10 %} style="display: none;"{% endif %}>
-          <div class="topics-post-meta">{{ post.date | date: "%Y-%m-%d" }}{% if post.categories and post.categories.size > 0 %} / {{ post.categories | join: " / " }}{% endif %}</div>
-          <h2>{{ post.title }}</h2>
-          {% if summary != "" %}
-            <p>{{ summary | truncate: 120 }}</p>
-          {% endif %}
-          {% if post.tags and post.tags.size > 0 %}
-            <div class="topics-tags">
-              {% for tag in post.tags %}
-                <span>{{ tag }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </a>
+        {% if post.title != "SUCTF复现记" and post.title != "突击二小题复现" %}
+          {% include topics-post-card.html %}
+        {% endif %}
       {% endfor %}
     </div>
     <nav class="topics-pagination" aria-label="Post pagination" id="topics-pagination"></nav>
@@ -61,6 +59,7 @@ wide: true
         var end = start + pageSize;
         card.style.display = index >= start && index < end ? "" : "none";
       });
+      document.getElementById("topics-posts").classList.add("topics-ready");
       renderPagination();
     }
     

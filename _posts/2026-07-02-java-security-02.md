@@ -8,6 +8,7 @@ source_note: "JAVA安全\2.反射.md"
 permalink: /web_note/java-security/02/
 render_with_liquid: false
 ---
+{% raw %}
 # 1. 概念
 
 > 可以将Java这种静态语言附上"**动态特性**"的机制
@@ -644,3 +645,5 @@ Runtime.exec("calc.exe") / ProcessBuilder.start()
 
 
 
+
+{% endraw %}

@@ -1,0 +1,25 @@
+# WEB_Note image import manifest
+
+- `E:\BNOTE\06.图片库\png\Array.png` -> `/assets/images/web-note/web-note-001.png`
+- `E:\BNOTE\06.图片库\png\DNS.png` -> `/assets/images/web-note/web-note-002.png`
+- `E:\BNOTE\06.图片库\png\DNS信.png` -> `/assets/images/web-note/web-note-003.png`
+- `E:\BNOTE\06.图片库\png\find.png` -> `/assets/images/web-note/web-note-004.png`
+- `E:\BNOTE\06.图片库\png\HTTP1.png` -> `/assets/images/web-note/web-note-005.png`
+- `E:\BNOTE\06.图片库\png\HTTP2.png` -> `/assets/images/web-note/web-note-006.png`
+- `E:\BNOTE\06.图片库\png\HTTPS.png` -> `/assets/images/web-note/web-note-007.png`
+- `E:\BNOTE\06.图片库\png\JAVA区别.png` -> `/assets/images/web-note/web-note-008.png`
+- `E:\BNOTE\06.图片库\png\pickle代码.png` -> `/assets/images/web-note/web-note-009.png`
+- `E:\BNOTE\06.图片库\png\PVM.png` -> `/assets/images/web-note/web-note-010.png`
+- `E:\BNOTE\06.图片库\png\PVM_reduce.gif` -> `/assets/images/web-note/web-note-011.gif`
+- `E:\BNOTE\06.图片库\png\PVM_string.gif` -> `/assets/images/web-note/web-note-012.gif`
+- `E:\BNOTE\06.图片库\png\session上传进度.png` -> `/assets/images/web-note/web-note-013.png`
+- `E:\BNOTE\06.图片库\png\sql注入思路.png` -> `/assets/images/web-note/web-note-014.png`
+- `E:\BNOTE\06.图片库\png\TCP简化图.png` -> `/assets/images/web-note/web-note-015.png`
+- `E:\BNOTE\06.图片库\png\TCP三次握手.png` -> `/assets/images/web-note/web-note-016.png`
+- `E:\BNOTE\06.图片库\png\URL组成.png` -> `/assets/images/web-note/web-note-017.png`
+- `E:\BNOTE\06.图片库\png\二次注入.png` -> `/assets/images/web-note/web-note-018.png`
+- `E:\BNOTE\06.图片库\png\二维数组.png` -> `/assets/images/web-note/web-note-019.png`
+- `E:\BNOTE\06.图片库\png\封装.png` -> `/assets/images/web-note/web-note-020.png`
+- `E:\BNOTE\06.图片库\png\解封装.png` -> `/assets/images/web-note/web-note-021.png`
+- `E:\BNOTE\06.图片库\png\判断漏洞.png` -> `/assets/images/web-note/web-note-022.png`
+- `E:\BNOTE\06.图片库\png\三维数组.png` -> `/assets/images/web-note/web-note-023.png`

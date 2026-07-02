@@ -218,7 +218,7 @@ Java（编译+解释）：
 安全关注：.class 文件可以被反编译（javap / jadx / cfr）还原为接近源代码的形式
 ```
 
-<img src="E:\BNOTE\06.图片库\png\JAVA区别.png" alt="JAVA区别" style="zoom:150%;" />
+<img src="/assets/images/web-note/web-note-008.png" alt="JAVA区别" style="zoom:150%;" />
 
 # 2 数据类型
 

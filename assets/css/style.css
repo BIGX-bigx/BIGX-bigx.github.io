@@ -466,16 +466,17 @@ a:hover {
   gap: 16px;
   min-height: 42px;
   padding: 8px 12px;
-  border-radius: 8px;
-  background: #ecfdf5;
-  color: #064e3b;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
 }
 
 .diary-stat-item strong {
   padding: 2px 8px;
   border-radius: 6px;
-  background: #d1fae5;
-  color: #065f46;
+  background: var(--soft);
+  color: var(--text);
   font-weight: 500;
   white-space: nowrap;
 }

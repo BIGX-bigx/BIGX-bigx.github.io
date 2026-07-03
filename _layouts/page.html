@@ -6,7 +6,11 @@ layout: default
   <header class="page-header">
     <h1>{{ page.title }}</h1>
     {% if page.description %}
-      <p>{{ page.description }}</p>
+      {% if page.diary_stats %}
+        <p><span class="diary-stat-trigger" id="diary-stat-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="diary-stat-panel">{{ page.description }}</span></p>
+      {% else %}
+        <p>{{ page.description }}</p>
+      {% endif %}
     {% endif %}
   </header>
   <div class="content{% if page.wide %} content-wide{% endif %}">

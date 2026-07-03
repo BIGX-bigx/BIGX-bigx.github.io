@@ -425,6 +425,33 @@ a:hover {
   font-weight: 700;
 }
 
+.diary-stat-trigger {
+  color: inherit;
+  cursor: default;
+  outline: none;
+}
+
+.diary-stat-trigger:hover,
+.diary-stat-trigger:focus {
+  color: inherit;
+}
+
+.diary-stat-panel {
+  margin: -10px 0 28px;
+  padding: 12px 0 2px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.diary-stat-panel[hidden] {
+  display: none;
+}
+
+.diary-stat-panel p {
+  margin: 0 0 4px;
+  color: var(--muted);
+}
+
 .profile-grid {
   display: grid;
   grid-template-columns: 300px minmax(720px, 1fr);

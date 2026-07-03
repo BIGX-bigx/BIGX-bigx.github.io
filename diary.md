@@ -3,7 +3,13 @@ layout: page
 title: Diary
 description: "日记"
 permalink: /diary/
+diary_stats: true
 ---
+
+<div class="diary-stat-panel" id="diary-stat-panel" hidden>
+  <p>Diary page views: <span id="busuanzi_page_pv">加载中...</span></p>
+  <p>Diary visitors: <span id="busuanzi_page_uv">加载中...</span></p>
+</div>
 
 #### **26-6-15 Mon**
 
@@ -217,3 +223,30 @@ PC下载完成，我已上线玩耍
 Java反射RMI篇
 
 明天想出去稍微逛一逛
+
+<script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+<script>
+  (function () {
+    var trigger = document.getElementById("diary-stat-trigger");
+    var panel = document.getElementById("diary-stat-panel");
+    if (!trigger || !panel) return;
+
+    function togglePanel() {
+      var isHidden = panel.hasAttribute("hidden");
+      if (isHidden) {
+        panel.removeAttribute("hidden");
+      } else {
+        panel.setAttribute("hidden", "");
+      }
+      trigger.setAttribute("aria-expanded", String(isHidden));
+    }
+
+    trigger.addEventListener("click", togglePanel);
+    trigger.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        togglePanel();
+      }
+    });
+  })();
+</script>

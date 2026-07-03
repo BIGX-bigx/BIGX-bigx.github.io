@@ -7,8 +7,24 @@ diary_stats: true
 ---
 
 <div class="diary-stat-panel" id="diary-stat-panel" hidden>
-  <p>Diary page views: <span id="busuanzi_page_pv">加载中...</span></p>
-  <p>Diary visitors: <span id="busuanzi_page_uv">加载中...</span></p>
+  <div class="diary-stat-grid">
+    <div class="diary-stat-item">
+      <span>今日访问量</span>
+      <strong><span id="busuanzi_today_pv">加载中...</span>次</strong>
+    </div>
+    <div class="diary-stat-item">
+      <span>今日访客数</span>
+      <strong><span id="busuanzi_today_uv">加载中...</span>人</strong>
+    </div>
+    <div class="diary-stat-item">
+      <span>本站访问量</span>
+      <strong><span id="busuanzi_site_pv">加载中...</span>次</strong>
+    </div>
+    <div class="diary-stat-item">
+      <span>本站访客数</span>
+      <strong><span id="busuanzi_site_uv">加载中...</span>人</strong>
+    </div>
+  </div>
 </div>
 
 #### **26-6-15 Mon**

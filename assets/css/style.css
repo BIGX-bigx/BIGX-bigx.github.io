@@ -452,6 +452,34 @@ a:hover {
   color: var(--muted);
 }
 
+.diary-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 8px 10px;
+  max-width: 640px;
+}
+
+.diary-stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 42px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #064e3b;
+}
+
+.diary-stat-item strong {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .profile-grid {
   display: grid;
   grid-template-columns: 300px minmax(720px, 1fr);

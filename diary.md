@@ -226,7 +226,7 @@ PC下载完成，我已上线玩耍
 
 薯条八重奏
 
-#### **29-7-3 Fri**
+#### **26-7-3 Fri**
 
 睡到中午
 
@@ -239,6 +239,14 @@ PC下载完成，我已上线玩耍
 Java反射RMI篇
 
 明天想出去稍微逛一逛
+
+#### **26-7-4 Sat**
+
+把一个工具整合升级了一下，写了写相关报告
+
+出去吃了顿39自助，味道还行，但是桌子上蹲个炉子有点高，油飞的满身是
+玩烤串消除(有点好玩，一口气过了40多关)
+学RMI篇，整了个开头
 
 <script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
 <script>
@@ -256,7 +264,7 @@ Java反射RMI篇
       }
       trigger.setAttribute("aria-expanded", String(isHidden));
     }
-
+    
     trigger.addEventListener("click", togglePanel);
     trigger.addEventListener("keydown", function (event) {
       if (event.key === "Enter" || event.key === " ") {

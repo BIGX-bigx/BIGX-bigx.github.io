@@ -423,6 +423,7 @@ a:hover {
   border: 1px solid var(--topic-line);
   border-radius: 18px;
   background: var(--surface);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .post-header h1 {
@@ -442,6 +443,13 @@ a:hover {
   border: 1px solid var(--topic-line);
   border-radius: 16px;
   background: color-mix(in srgb, var(--surface) 96%, transparent);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+body[data-post-scroll-mode="article"] .post-layout .post,
+body[data-post-scroll-mode="outline"] .post-toc {
+  border-color: color-mix(in srgb, var(--text) 45%, var(--topic-line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 5%, transparent);
 }
 
 .post-toc-toggle {
@@ -499,6 +507,7 @@ a:hover {
 }
 
 .post-toc a {
+  position: relative;
   display: block;
   padding: 7px 9px;
   border-radius: 8px;
@@ -509,11 +518,62 @@ a:hover {
   transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
+.post-toc a::before {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text);
+  content: "";
+  opacity: 0;
+  transform: translateY(-50%) scale(0.45);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
 .post-toc a:hover,
 .post-toc a.active {
   background: var(--soft);
   color: var(--text);
   transform: translateX(2px);
+}
+
+.post-toc a.active::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  animation: toc-tracker-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes toc-tracker-pulse {
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--text) 10%, transparent);
+  }
+}
+
+.post-scroll-status {
+  position: fixed;
+  z-index: 30;
+  right: 28px;
+  bottom: 76px;
+  padding: 8px 12px;
+  border: 1px solid var(--topic-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.post-scroll-status.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .post-toc .toc-h1 {
@@ -1219,6 +1279,7 @@ a:hover {
 .topics-toolbar {
   min-width: 0;
   width: min(760px, 100%);
+  margin-left: clamp(24px, 3vw, 48px);
   padding: 0;
 }
 
@@ -1695,6 +1756,11 @@ a:hover {
     gap: 24px;
   }
 
+  .topics-toolbar {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .post-toc {
     position: static;
     grid-row: 1;
@@ -1707,6 +1773,10 @@ a:hover {
 
   .post {
     grid-row: 2;
+  }
+
+  .post-scroll-status {
+    display: none;
   }
 }
 

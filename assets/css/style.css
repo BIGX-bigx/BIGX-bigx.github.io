@@ -718,20 +718,20 @@ a:hover {
 
 .code-icon-button {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 6px;
+  right: 8px;
   z-index: 3;
-  width: 34px;
-  height: 34px;
+  width: 22px;
+  height: 22px;
   padding: 0;
   border: 0;
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--line-strong) 70%, var(--surface));
+  border-radius: 5px;
+  background: transparent;
   color: var(--muted);
   opacity: 0;
   cursor: pointer;
   transform: translateY(-2px);
-  transition: opacity 160ms ease, color 160ms ease, transform 160ms ease;
+  transition: opacity 160ms ease, color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
 .code-copy-shell:hover .code-icon-button,
@@ -741,37 +741,72 @@ a:hover {
   transform: translateY(0);
 }
 
+.code-icon-button:hover,
+.code-icon-button:focus-visible {
+  background: color-mix(in srgb, var(--line-strong) 42%, transparent);
+  color: var(--text);
+}
+
 .code-icon-button::before,
 .code-icon-button::after {
   position: absolute;
-  width: 9px;
-  height: 10px;
-  border: 1.5px solid currentColor;
-  border-radius: 2px;
+  width: 7px;
+  height: 8px;
+  border: 1.25px solid currentColor;
+  border-radius: 1.5px;
   content: "";
 }
 
 .code-icon-button::before {
-  top: 9px;
-  left: 10px;
+  top: 5px;
+  left: 5px;
 }
 
 .code-icon-button::after {
-  top: 13px;
-  left: 14px;
+  top: 8px;
+  left: 8px;
   background: inherit;
 }
 
 .code-language-button.is-copied,
 .code-icon-button.is-copied {
-  color: #3f7048;
-  font-size: 18px;
+  color: #5f7f66;
+  font-size: 0;
   line-height: 1;
 }
 
-.code-icon-button.is-copied::before,
+.code-language-button.is-copied {
+  width: 18px;
+  height: 16px;
+}
+
 .code-icon-button.is-copied::after {
   display: none;
+}
+
+.code-language-button.is-copied::after,
+.code-icon-button.is-copied::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 8px;
+  height: 4px;
+  border: 0;
+  border-bottom: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  content: "";
+  transform: translate(-50%, -62%) rotate(-45deg);
+  animation: copy-check-in 180ms cubic-bezier(0.2, 0.8, 0.2, 1.25) both;
+}
+
+@keyframes copy-check-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -62%) rotate(-45deg) scale(0.5);
+  }
 }
 
 .post-content div.has-code-language-button::before {

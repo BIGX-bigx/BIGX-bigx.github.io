@@ -1,4 +1,37 @@
 (function () {
+  var themeToggle = document.getElementById("theme-toggle");
+
+  function updateThemeControl(theme) {
+    if (!themeToggle) return;
+    var isDark = theme === "dark";
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute("aria-label", isDark ? "切换到日间模式" : "切换到夜间模式");
+  }
+
+  function updateCommentsTheme(theme) {
+    var frame = document.querySelector(".utterances-frame");
+    if (!frame || !frame.contentWindow) return;
+    frame.contentWindow.postMessage({
+      type: "set-theme",
+      theme: theme === "dark" ? "github-dark" : "github-light"
+    }, "https://utteranc.es");
+  }
+
+  if (themeToggle) {
+    updateThemeControl(document.documentElement.dataset.theme || "light");
+    themeToggle.addEventListener("click", function () {
+      var nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      try {
+        localStorage.setItem("blog-theme", nextTheme);
+      } catch (error) {
+        // The current page still switches even when storage is unavailable.
+      }
+      updateThemeControl(nextTheme);
+      updateCommentsTheme(nextTheme);
+    });
+  }
+
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealTargets = document.querySelectorAll(
     ".page-header, .home-hero > *, .topics-aside-card, .topics-toolbar, .topics-post-card, .folder-card, .category-mini-card, .web-note-folder-card, .archive-group"

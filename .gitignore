@@ -7,3 +7,4 @@ vendor/
 Gemfile.lock
 Thumbs.db
 .DS_Store
+.codex-preview/

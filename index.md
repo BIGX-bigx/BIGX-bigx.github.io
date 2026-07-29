@@ -12,7 +12,7 @@ title: HomePage
   <div class="home-actions">
     <a class="button" href="{{ '/profile/' | relative_url }}">查看 Profile</a>
     <a class="button ghost" href="{{ '/topics/' | relative_url }}">浏览 Topics</a>
-    <a class="button ghost" href="{{ '/diary/' | relative_url }}">书写 Diary</a>
+    <a class="button ghost" href="{{ '/comments/' | relative_url }}">Comments</a>
   </div>
 </section>
 

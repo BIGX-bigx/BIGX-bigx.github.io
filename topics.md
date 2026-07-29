@@ -4,6 +4,7 @@ title: Topics
 description: "Here is the article page"
 permalink: /topics/
 wide: true
+topics_search: true
 ---
 
 <div class="topics-layout">
@@ -23,13 +24,6 @@ wide: true
   </aside>
 
   <section class="topics-post-panel">
-    <div class="topics-toolbar">
-      <label for="topics-search">Find an article</label>
-      <div class="topics-search-wrap">
-        <input id="topics-search" type="search" placeholder="Search title, category or tag..." autocomplete="off">
-        <span id="topics-result-count" aria-live="polite"></span>
-      </div>
-    </div>
     <div class="topics-posts" id="topics-posts">
       {% assign article_pages = site.pages | where_exp: "item", "item.path contains 'articles/'" %}
       {% assign article_pages = article_pages | where_exp: "item", "item.path contains '.md'" %}
@@ -54,7 +48,7 @@ wide: true
     var currentPage = 1;
     var filteredCards = cards.slice();
     
-    function showPage(page) {
+    function showPage(page, shouldScroll) {
       var totalPages = Math.max(1, Math.ceil(filteredCards.length / pageSize));
       currentPage = Math.max(1, Math.min(totalPages, page));
       cards.forEach(function (card) {
@@ -69,6 +63,12 @@ wide: true
       empty.hidden = filteredCards.length !== 0;
       count.textContent = filteredCards.length + (filteredCards.length === 1 ? " article" : " articles");
       renderPagination();
+      if (shouldScroll) {
+        document.getElementById("topics-posts").scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start"
+        });
+      }
     }
     
     function makeButton(label, page, active) {
@@ -77,7 +77,7 @@ wide: true
       button.className = "topics-page-btn" + (active ? " active" : "");
       button.textContent = label;
       button.addEventListener("click", function () {
-        showPage(page);
+        showPage(page, true);
       });
       return button;
     }
@@ -103,9 +103,9 @@ wide: true
       filteredCards = cards.filter(function (card) {
         return !query || card.getAttribute("data-search").indexOf(query) !== -1;
       });
-      showPage(1);
+      showPage(1, false);
     });
     
-    showPage(1);
+    showPage(1, false);
   })();
 </script>

@@ -216,6 +216,204 @@
   font: 11px "SFMono-Regular", Consolas, monospace;
 }
 
+/* Rouge syntax colors, aligned with Typora's restrained GitHub palette. */
+.post-content div[class*="language-"] {
+  position: relative;
+}
+
+.post-content div[class*="language-"]::before {
+  position: absolute;
+  top: 7px;
+  right: 11px;
+  z-index: 1;
+  color: #7b818a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.post-content .language-python::before { content: "Python"; }
+.post-content .language-php::before { content: "PHP"; }
+.post-content .language-javascript::before,
+.post-content .language-js::before { content: "JavaScript"; }
+.post-content .language-java::before { content: "Java"; }
+.post-content .language-bash::before,
+.post-content .language-shell::before { content: "Shell"; }
+.post-content .language-html::before { content: "HTML"; }
+.post-content .language-css::before { content: "CSS"; }
+.post-content .language-sql::before { content: "SQL"; }
+
+.post-content .highlighter-rouge .highlight {
+  margin: 15px 0;
+  overflow: hidden;
+  border: 1px solid #e1e4e8;
+  border-radius: 7px;
+  background: #f6f8fa;
+}
+
+.post-content .highlighter-rouge .highlight pre {
+  margin: 0;
+  padding: 18px 16px 15px;
+  border: 0;
+  background: transparent;
+}
+
+.post-content .highlight .c,
+.post-content .highlight .cm,
+.post-content .highlight .c1,
+.post-content .highlight .cs { color: #6a737d; font-style: italic; }
+.post-content .highlight .k,
+.post-content .highlight .kc,
+.post-content .highlight .kd,
+.post-content .highlight .kn,
+.post-content .highlight .kp,
+.post-content .highlight .kr,
+.post-content .highlight .kt { color: #d73a49; }
+.post-content .highlight .s,
+.post-content .highlight .s1,
+.post-content .highlight .s2,
+.post-content .highlight .sb,
+.post-content .highlight .sc,
+.post-content .highlight .sd,
+.post-content .highlight .se,
+.post-content .highlight .sh,
+.post-content .highlight .si,
+.post-content .highlight .sr,
+.post-content .highlight .ss,
+.post-content .highlight .sx { color: #032f62; }
+.post-content .highlight .m,
+.post-content .highlight .mb,
+.post-content .highlight .mf,
+.post-content .highlight .mh,
+.post-content .highlight .mi,
+.post-content .highlight .mo,
+.post-content .highlight .il { color: #005cc5; }
+.post-content .highlight .na,
+.post-content .highlight .nb,
+.post-content .highlight .nc,
+.post-content .highlight .nd,
+.post-content .highlight .ne,
+.post-content .highlight .nf,
+.post-content .highlight .ni,
+.post-content .highlight .nl,
+.post-content .highlight .nn,
+.post-content .highlight .no,
+.post-content .highlight .nt,
+.post-content .highlight .nv { color: #6f42c1; }
+.post-content .highlight .o,
+.post-content .highlight .ow { color: #d73a49; }
+.post-content .highlight .gd { color: #b31d28; background: #ffeef0; }
+.post-content .highlight .gi { color: #22863a; background: #f0fff4; }
+
+:root[data-theme="dark"] .post-content {
+  color: #d7dbe0;
+}
+
+:root[data-theme="dark"] .post-content h1,
+:root[data-theme="dark"] .post-content h2,
+:root[data-theme="dark"] .post-content h3,
+:root[data-theme="dark"] .post-content h4,
+:root[data-theme="dark"] .post-content h5,
+:root[data-theme="dark"] .post-content h6 {
+  color: #f2f3f5;
+}
+
+:root[data-theme="dark"] .post-content h1,
+:root[data-theme="dark"] .post-content h2 {
+  border-bottom-color: #353a41;
+}
+
+:root[data-theme="dark"] .post-content a {
+  color: #7db7ff;
+}
+
+:root[data-theme="dark"] .post-content blockquote {
+  background: rgba(66, 183, 255, 0.08);
+  color: #dce8f4;
+}
+
+:root[data-theme="dark"] .post-content code,
+:root[data-theme="dark"] .post-content tt {
+  border-color: #3d434b;
+  background: #20242a;
+  color: #e6edf3;
+}
+
+:root[data-theme="dark"] .post-content pre {
+  border-color: #3d434b;
+  background: #161a1f;
+}
+
+:root[data-theme="dark"] .post-content .highlighter-rouge .highlight {
+  border-color: #3d434b;
+  background: #161a1f;
+}
+
+:root[data-theme="dark"] .post-content table tr,
+:root[data-theme="dark"] .post-content table th,
+:root[data-theme="dark"] .post-content table td {
+  border-color: #3d434b;
+}
+
+:root[data-theme="dark"] .post-content table tr:nth-child(2n),
+:root[data-theme="dark"] .post-content thead {
+  background: #1b1f24;
+}
+
+:root[data-theme="dark"] .post-content kbd {
+  border-color: #505862;
+  border-bottom-color: #68717d;
+  background: #20242a;
+  box-shadow: inset 0 -1px 0 #68717d;
+}
+
+:root[data-theme="dark"] .post-content .highlight .c,
+:root[data-theme="dark"] .post-content .highlight .cm,
+:root[data-theme="dark"] .post-content .highlight .c1,
+:root[data-theme="dark"] .post-content .highlight .cs { color: #8b949e; }
+:root[data-theme="dark"] .post-content .highlight .k,
+:root[data-theme="dark"] .post-content .highlight .kc,
+:root[data-theme="dark"] .post-content .highlight .kd,
+:root[data-theme="dark"] .post-content .highlight .kn,
+:root[data-theme="dark"] .post-content .highlight .kp,
+:root[data-theme="dark"] .post-content .highlight .kr,
+:root[data-theme="dark"] .post-content .highlight .kt,
+:root[data-theme="dark"] .post-content .highlight .o,
+:root[data-theme="dark"] .post-content .highlight .ow { color: #ff7b72; }
+:root[data-theme="dark"] .post-content .highlight .s,
+:root[data-theme="dark"] .post-content .highlight .s1,
+:root[data-theme="dark"] .post-content .highlight .s2,
+:root[data-theme="dark"] .post-content .highlight .sb,
+:root[data-theme="dark"] .post-content .highlight .sc,
+:root[data-theme="dark"] .post-content .highlight .sd,
+:root[data-theme="dark"] .post-content .highlight .se,
+:root[data-theme="dark"] .post-content .highlight .sh,
+:root[data-theme="dark"] .post-content .highlight .si,
+:root[data-theme="dark"] .post-content .highlight .sr,
+:root[data-theme="dark"] .post-content .highlight .ss,
+:root[data-theme="dark"] .post-content .highlight .sx { color: #a5d6ff; }
+:root[data-theme="dark"] .post-content .highlight .m,
+:root[data-theme="dark"] .post-content .highlight .mb,
+:root[data-theme="dark"] .post-content .highlight .mf,
+:root[data-theme="dark"] .post-content .highlight .mh,
+:root[data-theme="dark"] .post-content .highlight .mi,
+:root[data-theme="dark"] .post-content .highlight .mo,
+:root[data-theme="dark"] .post-content .highlight .il { color: #79c0ff; }
+:root[data-theme="dark"] .post-content .highlight .na,
+:root[data-theme="dark"] .post-content .highlight .nb,
+:root[data-theme="dark"] .post-content .highlight .nc,
+:root[data-theme="dark"] .post-content .highlight .nd,
+:root[data-theme="dark"] .post-content .highlight .ne,
+:root[data-theme="dark"] .post-content .highlight .nf,
+:root[data-theme="dark"] .post-content .highlight .ni,
+:root[data-theme="dark"] .post-content .highlight .nl,
+:root[data-theme="dark"] .post-content .highlight .nn,
+:root[data-theme="dark"] .post-content .highlight .no,
+:root[data-theme="dark"] .post-content .highlight .nt,
+:root[data-theme="dark"] .post-content .highlight .nv { color: #d2a8ff; }
+
 @media (max-width: 760px) {
   .post-content {
     font-size: 15px;

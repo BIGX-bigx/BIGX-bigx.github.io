@@ -3,14 +3,25 @@ layout: default
 ---
 
 <article class="page{% if page.wide %} page-wide{% endif %}">
-  <header class="page-header">
-    <h1>{{ page.title }}</h1>
-    {% if page.description %}
-      {% if page.diary_stats %}
-        <p><span class="diary-stat-trigger" id="diary-stat-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="diary-stat-panel">{{ page.description }}</span></p>
-      {% else %}
-        <p>{{ page.description }}</p>
+  <header class="page-header{% if page.topics_search %} page-header-with-tools{% endif %}">
+    <div class="page-header-copy">
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+        {% if page.diary_stats %}
+          <p><span class="diary-stat-trigger" id="diary-stat-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="diary-stat-panel">{{ page.description }}</span></p>
+        {% else %}
+          <p>{{ page.description }}</p>
+        {% endif %}
       {% endif %}
+    </div>
+    {% if page.topics_search %}
+      <div class="topics-toolbar">
+        <label for="topics-search">Find an article</label>
+        <div class="topics-search-wrap">
+          <input id="topics-search" type="search" placeholder="Search title, category or tag..." autocomplete="off">
+          <span id="topics-result-count" aria-live="polite"></span>
+        </div>
+      </div>
     {% endif %}
   </header>
   <div class="content{% if page.wide %} content-wide{% endif %}">

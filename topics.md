@@ -9,23 +9,36 @@ wide: true
 <div class="topics-layout">
   <aside class="topics-aside">
     <a class="topics-aside-card" href="{{ '/categories/' | relative_url }}">
-      <span>Folders</span>
+      <span class="topics-card-index">01 / Folders</span>
       <h2>Categories</h2>
       <p>Grouped by Theme</p>
+      <i aria-hidden="true">→</i>
     </a>
     <a class="topics-aside-card" href="{{ '/tags/' | relative_url }}">
-      <span>Keywords</span>
+      <span class="topics-card-index">02 / Keywords</span>
       <h2>Tag</h2>
       <p>Classify via Tags</p>
+      <i aria-hidden="true">→</i>
     </a>
   </aside>
 
   <section class="topics-post-panel">
+    <div class="topics-toolbar">
+      <label for="topics-search">Find an article</label>
+      <div class="topics-search-wrap">
+        <input id="topics-search" type="search" placeholder="Search title, category or tag..." autocomplete="off">
+        <span id="topics-result-count" aria-live="polite"></span>
+      </div>
+    </div>
     <div class="topics-posts" id="topics-posts">
-      {% for post in site.posts %}
+      {% assign article_pages = site.pages | where_exp: "item", "item.path contains 'articles/'" %}
+      {% assign article_pages = article_pages | where_exp: "item", "item.path contains '.md'" %}
+      {% assign all_posts = site.posts | concat: article_pages | sort: "date" | reverse %}
+      {% for post in all_posts %}
         {% include topics-post-card.html %}
       {% endfor %}
     </div>
+    <p class="topics-empty" id="topics-empty" hidden>No matching articles.</p>
     <nav class="topics-pagination" aria-label="Post pagination" id="topics-pagination"></nav>
   </section>
 </div>
@@ -34,20 +47,27 @@ wide: true
   (function () {
     var cards = Array.prototype.slice.call(document.querySelectorAll("[data-post-card]"));
     var pagination = document.getElementById("topics-pagination");
+    var search = document.getElementById("topics-search");
+    var count = document.getElementById("topics-result-count");
+    var empty = document.getElementById("topics-empty");
     var pageSize = 10;
     var currentPage = 1;
-    var totalPages = Math.ceil(cards.length / pageSize);
-
-    if (!pagination || cards.length <= pageSize) return;
+    var filteredCards = cards.slice();
     
     function showPage(page) {
+      var totalPages = Math.max(1, Math.ceil(filteredCards.length / pageSize));
       currentPage = Math.max(1, Math.min(totalPages, page));
-      cards.forEach(function (card, index) {
+      cards.forEach(function (card) {
+        card.hidden = true;
+      });
+      filteredCards.forEach(function (card, index) {
         var start = (currentPage - 1) * pageSize;
         var end = start + pageSize;
-        card.style.display = index >= start && index < end ? "" : "none";
+        card.hidden = !(index >= start && index < end);
       });
       document.getElementById("topics-posts").classList.add("topics-ready");
+      empty.hidden = filteredCards.length !== 0;
+      count.textContent = filteredCards.length + (filteredCards.length === 1 ? " article" : " articles");
       renderPagination();
     }
     
@@ -64,12 +84,27 @@ wide: true
     
     function renderPagination() {
       pagination.innerHTML = "";
-      pagination.appendChild(makeButton("Prev", currentPage - 1, false));
+      var totalPages = Math.ceil(filteredCards.length / pageSize);
+      pagination.hidden = totalPages <= 1;
+      if (totalPages <= 1) return;
+      var previous = makeButton("Prev", currentPage - 1, false);
+      previous.disabled = currentPage === 1;
+      pagination.appendChild(previous);
       for (var i = 1; i <= totalPages; i += 1) {
         pagination.appendChild(makeButton(String(i), i, i === currentPage));
       }
-      pagination.appendChild(makeButton("Next", currentPage + 1, false));
+      var next = makeButton("Next", currentPage + 1, false);
+      next.disabled = currentPage === totalPages;
+      pagination.appendChild(next);
     }
+
+    search.addEventListener("input", function () {
+      var query = search.value.trim().toLowerCase();
+      filteredCards = cards.filter(function (card) {
+        return !query || card.getAttribute("data-search").indexOf(query) !== -1;
+      });
+      showPage(1);
+    });
     
     showPage(1);
   })();

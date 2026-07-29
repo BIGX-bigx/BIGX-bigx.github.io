@@ -1,7 +1,14 @@
 {% assign summary = post.excerpt | strip_html | strip_newlines | strip %}
-<a class="topics-post-card" href="{{ post.url | relative_url }}" data-post-card>
-  <div class="topics-post-meta">{{ post.date | date: "%Y-%m-%d" }}{% if post.categories and post.categories.size > 0 %} / {{ post.categories | join: " / " }}{% endif %}</div>
-  <h2>{{ post.title }}</h2>
+{% assign post_title = post.title %}
+{% unless post_title %}
+  {% assign post_title = post.slug %}
+{% endunless %}
+<a class="topics-post-card" href="{{ post.url | relative_url }}" data-post-card data-search="{{ post_title | append: ' ' | append: post.categories | append: ' ' | append: post.tags | downcase | escape }}">
+  <div class="topics-post-meta">
+    {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>{% endif %}
+    {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories | join: " / " }}</span>{% endif %}
+  </div>
+  <h2>{{ post_title }}</h2>
   {% if summary != "" %}
     <p>{{ summary | truncate: 120 }}</p>
   {% endif %}
@@ -12,4 +19,5 @@
       {% endfor %}
     </div>
   {% endif %}
+  <span class="topics-read-link">Read article <span aria-hidden="true">→</span></span>
 </a>

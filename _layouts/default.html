@@ -3,7 +3,8 @@
   <head>
     {% include head.html %}
   </head>
-  <body>
+  <body class="layout-{{ page.layout | default: 'default' }}">
+    <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
     {% include nav.html %}
     <main class="container page-shell">
       {{ content }}
@@ -15,5 +16,6 @@
         <a href="{{ site.author.github }}">GitHub</a>
       </div>
     </footer>
+    <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   </body>
 </html>

@@ -6,11 +6,15 @@ layout: default
   <article class="post">
     <header class="post-header">
       <p class="eyebrow">{{ page.categories | join: " / " }}</p>
-      <h1>{{ page.title }}</h1>
+      {% assign page_title = page.title %}
+      {% unless page_title %}
+        {% assign page_title = page.slug %}
+      {% endunless %}
+      <h1>{{ page_title }}</h1>
       <div class="post-meta">
-        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>{% endif %}
         {% if page.tags and page.tags.size > 0 %}
-          <span>·</span>
+          {% if page.date %}<span>·</span>{% endif %}
           <span>{{ page.tags | join: ", " }}</span>
         {% endif %}
       </div>
@@ -21,8 +25,12 @@ layout: default
   </article>
 
   <aside class="post-toc" id="post-toc" aria-label="文章大纲">
-    <p>OUTLINE</p>
-    <nav id="post-toc-list"></nav>
+    <button class="post-toc-toggle" id="post-toc-toggle" type="button" aria-expanded="true" aria-controls="post-toc-list">
+      <span>OUTLINE</span>
+      <span class="post-toc-count" id="post-toc-count"></span>
+      <span class="post-toc-chevron" aria-hidden="true"></span>
+    </button>
+    <nav id="post-toc-list" aria-label="本页目录"></nav>
   </aside>
 </div>
 
@@ -31,24 +39,67 @@ layout: default
     var content = document.getElementById("post-content");
     var toc = document.getElementById("post-toc");
     var list = document.getElementById("post-toc-list");
+    var toggle = document.getElementById("post-toc-toggle");
+    var count = document.getElementById("post-toc-count");
     if (!content || !toc || !list) return;
 
-    var headings = Array.prototype.slice.call(content.querySelectorAll("h2, h3"));
+    var headings = Array.prototype.slice.call(content.querySelectorAll("h1, h2, h3"));
     if (!headings.length) {
       toc.hidden = true;
       return;
     }
 
+    var usedIds = {};
     headings.forEach(function (heading, index) {
-      if (!heading.id) {
-        heading.id = "heading-" + (index + 1);
+      var baseId = heading.id || "heading-" + (index + 1);
+      var uniqueId = baseId;
+      var suffix = 2;
+      while (usedIds[uniqueId]) {
+        uniqueId = baseId + "-" + suffix;
+        suffix += 1;
       }
+      usedIds[uniqueId] = true;
+      heading.id = uniqueId;
 
       var link = document.createElement("a");
-      link.href = "#" + heading.id;
-      link.textContent = heading.textContent;
+      link.href = "#" + encodeURIComponent(heading.id);
+      link.setAttribute("data-target-id", heading.id);
+      link.textContent = heading.textContent.trim();
       link.className = "toc-" + heading.tagName.toLowerCase();
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        heading.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", "#" + encodeURIComponent(heading.id));
+      });
       list.appendChild(link);
     });
+
+    var links = Array.prototype.slice.call(list.querySelectorAll("a"));
+    count.textContent = headings.length;
+
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      toggle.setAttribute("aria-expanded", "false");
+      list.hidden = true;
+    }
+
+    toggle.addEventListener("click", function () {
+      var expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      list.hidden = expanded;
+    });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (link) {
+            link.classList.toggle("active", link.getAttribute("data-target-id") === entry.target.id);
+          });
+        });
+      }, { rootMargin: "-18% 0px -72% 0px" });
+      headings.forEach(function (heading) {
+        observer.observe(heading);
+      });
+    }
   })();
 </script>

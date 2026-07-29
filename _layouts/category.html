@@ -5,6 +5,10 @@ wide: true
 
 {% assign category_name = page.category %}
 {% assign posts = site.categories[category_name] %}
+{% assign article_pages = site.pages | where_exp: "item", "item.path contains 'articles/'" %}
+{% assign article_pages = article_pages | where_exp: "item", "item.path contains '.md'" %}
+{% assign collection_posts = article_pages | where_exp: "article", "article.categories contains category_name" %}
+{% assign posts = posts | concat: collection_posts | sort: "date" | reverse %}
 
 <div class="folder-back">
   <a href="{{ '/categories/' | relative_url }}">← 返回 Categories</a>
@@ -25,9 +29,13 @@ wide: true
           <div class="web-note-mini-list">
             {% assign folder_posts = folder.items | sort: "date" | reverse %}
             {% for post in folder_posts %}
+              {% assign post_title = post.title %}
+              {% unless post_title %}
+                {% assign post_title = post.slug %}
+              {% endunless %}
               <a href="{{ post.url | relative_url }}">
-                <span>{{ post.title }}</span>
-                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+                <span>{{ post_title }}</span>
+                {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>{% endif %}
               </a>
             {% endfor %}
           </div>
@@ -38,11 +46,15 @@ wide: true
   {% else %}
     <div class="category-mini-grid">
       {% for post in posts %}
+        {% assign post_title = post.title %}
+        {% unless post_title %}
+          {% assign post_title = post.slug %}
+        {% endunless %}
         <a class="category-mini-card" href="{{ post.url | relative_url }}">
           <div class="mini-card-top">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>{% else %}<span>ARTICLE</span>{% endif %}
           </div>
-          <h2>{{ post.title }}</h2>
+          <h2>{{ post_title }}</h2>
           {% if post.tags and post.tags.size > 0 %}
             <div class="mini-tags">
               {% for tag in post.tags %}

@@ -1578,6 +1578,10 @@ a:hover {
   width: 100%;
 }
 
+.comments-widget .giscus-frame {
+  min-height: 560px;
+}
+
 .site-footer {
   position: fixed;
   left: 0;
@@ -1783,6 +1787,10 @@ a:hover {
   .topics-search-wrap span {
     min-width: 0;
     text-align: left;
+  }
+
+  .comments-widget .giscus-frame {
+    min-height: 760px;
   }
 
   .post-header h1 {

@@ -1,0 +1,35 @@
+@import url("https://giscus.app/themes/light.css");
+
+.gsc-main {
+  gap: 1.25rem;
+}
+
+.gsc-comments {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 1.1fr);
+  gap: 1rem 1.5rem;
+  align-items: start;
+}
+
+.gsc-comments > .gsc-header {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.gsc-comments > .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.gsc-comments > .gsc-timeline {
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .gsc-comments {
+    display: flex;
+    flex-direction: column;
+  }
+}

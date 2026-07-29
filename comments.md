@@ -3,6 +3,7 @@ layout: page
 title: Comments
 description: "Log in with GitHub to say something"
 permalink: /comments/
+wide: true
 ---
 
 <section class="comments-panel">
@@ -22,6 +23,8 @@ permalink: /comments/
     var mount = document.getElementById("comments-widget");
     if (!mount) return;
 
+    var themeName = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    var themeUrl = window.location.origin + "/assets/css/giscus-" + themeName + ".css";
     var script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
     script.setAttribute("data-repo", "BIGX-bigx/BIGX-bigx.github.io");
@@ -33,7 +36,7 @@ permalink: /comments/
     script.setAttribute("data-reactions-enabled", "1");
     script.setAttribute("data-emit-metadata", "0");
     script.setAttribute("data-input-position", "top");
-    script.setAttribute("data-theme", document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+    script.setAttribute("data-theme", themeUrl);
     script.setAttribute("data-lang", "en");
     script.setAttribute("crossorigin", "anonymous");
     script.async = true;

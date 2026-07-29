@@ -189,6 +189,9 @@ a:hover {
 
 .page-shell {
   padding: 56px 0 128px;
+}
+
+.page-shell > :not(.welcome-corner):not(script) {
   animation: page-enter 440ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
@@ -417,7 +420,7 @@ a:hover {
 .post-layout .post {
   min-width: 0;
   padding: clamp(26px, 3vw, 42px);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--topic-line);
   border-radius: 18px;
   background: var(--surface);
 }
@@ -436,21 +439,21 @@ a:hover {
   width: 100%;
   max-height: calc(100vh - 120px);
   overflow: hidden;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--topic-line);
   border-radius: 16px;
   background: color-mix(in srgb, var(--surface) 96%, transparent);
 }
 
 .post-toc-toggle {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   gap: 9px;
   align-items: center;
   width: 100%;
   margin: 0;
   padding: 14px 16px;
   border: 0;
-  border-bottom: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--topic-line);
   background: var(--soft);
   color: var(--text);
   font-family: inherit;
@@ -459,6 +462,17 @@ a:hover {
   letter-spacing: 0.08em;
   text-align: left;
   cursor: pointer;
+}
+
+.post-toc-count {
+  min-width: 24px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .post-toc-chevron {
@@ -1204,6 +1218,7 @@ a:hover {
 
 .topics-toolbar {
   min-width: 0;
+  width: min(760px, 100%);
   padding: 0;
 }
 
@@ -1520,7 +1535,8 @@ a:hover {
 }
 
 .comments-panel {
-  max-width: 920px;
+  width: 100%;
+  max-width: none;
   padding: clamp(24px, 4vw, 42px);
   border: 1px solid var(--line-strong);
   border-radius: 18px;
@@ -1629,6 +1645,7 @@ a:hover {
   background: var(--surface);
 }
 
+:root[data-theme="dark"] .post-toc-count,
 :root[data-theme="dark"] .tag-cloud strong {
   background: #292e34;
 }

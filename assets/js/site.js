@@ -11,10 +11,11 @@
   function updateCommentsTheme(theme) {
     var frame = document.querySelector(".giscus-frame");
     if (!frame || !frame.contentWindow) return;
+    var themeUrl = window.location.origin + "/assets/css/giscus-" + theme + ".css";
     frame.contentWindow.postMessage({
       giscus: {
         setConfig: {
-          theme: theme === "dark" ? "dark" : "light"
+          theme: themeUrl
         }
       }
     }, "https://giscus.app");

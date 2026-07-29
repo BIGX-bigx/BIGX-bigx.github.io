@@ -27,7 +27,6 @@ layout: default
   <aside class="post-toc" id="post-toc" aria-label="文章大纲">
     <button class="post-toc-toggle" id="post-toc-toggle" type="button" aria-expanded="true" aria-controls="post-toc-list">
       <span>OUTLINE</span>
-      <span class="post-toc-count" id="post-toc-count"></span>
       <span class="post-toc-chevron" aria-hidden="true"></span>
     </button>
     <nav id="post-toc-list" aria-label="本页目录"></nav>
@@ -40,7 +39,6 @@ layout: default
     var toc = document.getElementById("post-toc");
     var list = document.getElementById("post-toc-list");
     var toggle = document.getElementById("post-toc-toggle");
-    var count = document.getElementById("post-toc-count");
     if (!content || !toc || !list) return;
 
     var headings = Array.prototype.slice.call(content.querySelectorAll("h1, h2, h3"));
@@ -75,7 +73,6 @@ layout: default
     });
 
     var links = Array.prototype.slice.call(list.querySelectorAll("a"));
-    count.textContent = headings.length;
 
     if (window.matchMedia("(max-width: 900px)").matches) {
       toggle.setAttribute("aria-expanded", "false");

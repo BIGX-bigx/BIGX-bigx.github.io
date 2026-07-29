@@ -9,12 +9,15 @@
   }
 
   function updateCommentsTheme(theme) {
-    var frame = document.querySelector(".utterances-frame");
+    var frame = document.querySelector(".giscus-frame");
     if (!frame || !frame.contentWindow) return;
     frame.contentWindow.postMessage({
-      type: "set-theme",
-      theme: theme === "dark" ? "github-dark" : "github-light"
-    }, "https://utteranc.es");
+      giscus: {
+        setConfig: {
+          theme: theme === "dark" ? "dark" : "light"
+        }
+      }
+    }, "https://giscus.app");
   }
 
   if (themeToggle) {
@@ -33,6 +36,22 @@
   }
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var spotlightCards = document.querySelectorAll(".topics-post-card, .topics-aside-card");
+
+  if (!reducedMotion) {
+    spotlightCards.forEach(function (card) {
+      card.addEventListener("pointermove", function (event) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--spot-x", event.clientX - rect.left + "px");
+        card.style.setProperty("--spot-y", event.clientY - rect.top + "px");
+        card.classList.add("has-spotlight");
+      });
+      card.addEventListener("pointerleave", function () {
+        card.classList.remove("has-spotlight");
+      });
+    });
+  }
+
   var revealTargets = document.querySelectorAll(
     ".page-header, .home-hero > *, .topics-aside-card, .topics-toolbar, .topics-post-card, .folder-card, .category-mini-card, .web-note-folder-card, .archive-group"
   );

@@ -336,37 +336,37 @@
 
 :root[data-theme="dark"] .post-content code,
 :root[data-theme="dark"] .post-content tt {
-  border-color: #3d434b;
-  background: #20242a;
+  border-color: #444c59;
+  background: #292e38;
   color: #e6edf3;
 }
 
 :root[data-theme="dark"] .post-content pre {
-  border-color: #3d434b;
-  background: #161a1f;
+  border-color: #444c59;
+  background: #191d25;
 }
 
 :root[data-theme="dark"] .post-content .highlighter-rouge .highlight {
-  border-color: #3d434b;
-  background: #161a1f;
+  border-color: #444c59;
+  background: #191d25;
 }
 
 :root[data-theme="dark"] .post-content table tr,
 :root[data-theme="dark"] .post-content table th,
 :root[data-theme="dark"] .post-content table td {
-  border-color: #3d434b;
+  border-color: #444c59;
 }
 
 :root[data-theme="dark"] .post-content table tr:nth-child(2n),
 :root[data-theme="dark"] .post-content thead {
-  background: #1b1f24;
+  background: #252a34;
 }
 
 :root[data-theme="dark"] .post-content kbd {
-  border-color: #505862;
-  border-bottom-color: #68717d;
-  background: #20242a;
-  box-shadow: inset 0 -1px 0 #68717d;
+  border-color: #566171;
+  border-bottom-color: #6c7788;
+  background: #292e38;
+  box-shadow: inset 0 -1px 0 #6c7788;
 }
 
 :root[data-theme="dark"] .post-content .highlight .c,

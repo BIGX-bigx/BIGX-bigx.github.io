@@ -1,19 +1,19 @@
 ---
 layout: page
 title: Comments
-description: "使用 GitHub 账号登录后，留下你的想法。"
+description: "Log in with GitHub to say something"
 permalink: /comments/
 ---
 
 <section class="comments-panel">
   <div class="comments-intro">
     <span>GITHUB COMMENTS</span>
-    <h2>Say something.</h2>
-    <p>评论由 GitHub Issues 托管。首次评论时，GitHub 会要求你确认授权。</p>
+    <h2>Share your thoughts</h2>
+    <p>Leave your perspective , no matter what you want to say</p>
   </div>
-  <div id="comments-widget" class="comments-widget" aria-live="polite"></div>
+  <div id="comments-widget" class="comments-widget giscus" aria-live="polite"></div>
   <noscript>
-    <p class="comments-fallback">请启用 JavaScript，或前往 <a href="https://github.com/BIGX-bigx/BIGX-bigx.github.io/issues">GitHub Issues</a> 留言。</p>
+    <p class="comments-fallback">请启用 JavaScript，或前往 <a href="https://github.com/BIGX-bigx/BIGX-bigx.github.io/discussions">GitHub Discussions</a> 留言。</p>
   </noscript>
 </section>
 
@@ -23,11 +23,18 @@ permalink: /comments/
     if (!mount) return;
 
     var script = document.createElement("script");
-    script.src = "https://utteranc.es/client.js";
-    script.setAttribute("repo", "BIGX-bigx/BIGX-bigx.github.io");
-    script.setAttribute("issue-term", "pathname");
-    script.setAttribute("label", "comments");
-    script.setAttribute("theme", document.documentElement.dataset.theme === "dark" ? "github-dark" : "github-light");
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute("data-repo", "BIGX-bigx/BIGX-bigx.github.io");
+    script.setAttribute("data-repo-id", "R_kgDOSzlavQ");
+    script.setAttribute("data-category", "Announcements");
+    script.setAttribute("data-category-id", "DIC_kwDOSzlavc4DCP2x");
+    script.setAttribute("data-mapping", "pathname");
+    script.setAttribute("data-strict", "1");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "top");
+    script.setAttribute("data-theme", document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+    script.setAttribute("data-lang", "en");
     script.setAttribute("crossorigin", "anonymous");
     script.async = true;
     mount.appendChild(script);

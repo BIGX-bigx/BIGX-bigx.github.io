@@ -94,7 +94,46 @@
     return copied ? Promise.resolve() : Promise.reject(new Error("Copy failed"));
   }
 
+  var languageLabels = {
+    python: "Python",
+    php: "PHP",
+    javascript: "JavaScript",
+    js: "JavaScript",
+    java: "Java",
+    bash: "Shell",
+    shell: "Shell",
+    html: "HTML",
+    css: "CSS",
+    sql: "SQL"
+  };
+
+  function getCodeLanguage(pre) {
+    var block = pre.closest("div[class*='language-']");
+    if (!block) return null;
+    var languageClass = Array.prototype.find.call(block.classList, function (className) {
+      return className.indexOf("language-") === 0;
+    });
+    if (!languageClass) return null;
+    var language = languageClass.slice(9).toLowerCase();
+    return languageLabels[language] ? { block: block, label: languageLabels[language] } : null;
+  }
+
+  function bindCopyButton(button, pre, restoreLabel) {
+    button.addEventListener("click", function () {
+      var code = pre.querySelector("code");
+      copyCode(code ? code.textContent : pre.textContent).then(function () {
+        button.textContent = "\u221a";
+        button.classList.add("is-copied");
+        window.setTimeout(function () {
+          button.textContent = restoreLabel;
+          button.classList.remove("is-copied");
+        }, 1500);
+      });
+    });
+  }
+
   document.querySelectorAll(".post-content pre").forEach(function (pre) {
+    var language = getCodeLanguage(pre);
     var shell = pre.parentElement && pre.parentElement.classList.contains("highlight")
       ? pre.parentElement
       : null;
@@ -107,22 +146,21 @@
 
     shell.classList.add("code-copy-shell");
     var button = document.createElement("button");
-    button.className = "code-copy-button";
     button.type = "button";
-    button.textContent = "COPY";
     button.setAttribute("aria-label", "Copy code");
-    button.addEventListener("click", function () {
-      var code = pre.querySelector("code");
-      copyCode(code ? code.textContent : pre.textContent).then(function () {
-        button.textContent = "COPIED";
-        button.classList.add("is-copied");
-        window.setTimeout(function () {
-          button.textContent = "COPY";
-          button.classList.remove("is-copied");
-        }, 1500);
-      });
-    });
-    shell.appendChild(button);
+
+    if (language) {
+      language.block.classList.add("has-code-language-button");
+      button.className = "code-language-button";
+      button.textContent = language.label;
+      bindCopyButton(button, pre, language.label);
+      language.block.appendChild(button);
+    } else {
+      button.className = "code-icon-button";
+      button.setAttribute("aria-label", "Copy code");
+      bindCopyButton(button, pre, "");
+      shell.appendChild(button);
+    }
   });
 
   var post = document.querySelector(".post-content");

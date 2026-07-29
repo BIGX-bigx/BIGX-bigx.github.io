@@ -33,7 +33,6 @@ layout: default
     <nav id="post-toc-list" aria-label="本页目录"></nav>
   </aside>
 </div>
-<div class="post-scroll-status" id="post-scroll-status" role="status" aria-live="polite"></div>
 
 <script>
   (function () {
@@ -42,9 +41,6 @@ layout: default
     var list = document.getElementById("post-toc-list");
     var toggle = document.getElementById("post-toc-toggle");
     var count = document.getElementById("post-toc-count");
-    var status = document.getElementById("post-scroll-status");
-    var postLayout = document.querySelector(".post-layout");
-    var desktop = window.matchMedia("(min-width: 901px)");
     if (!content || !toc || !list) return;
 
     var headings = Array.prototype.slice.call(content.querySelectorAll("h1, h2, h3"));
@@ -81,20 +77,7 @@ layout: default
 
     var links = Array.prototype.slice.call(list.querySelectorAll("a"));
     var activeId = "";
-    var statusTimer;
     count.textContent = headings.length;
-
-    function setScrollMode(mode, announce) {
-      if (!desktop.matches) mode = "article";
-      document.body.setAttribute("data-post-scroll-mode", mode);
-      if (!announce || !status) return;
-      status.textContent = mode === "outline" ? "SCROLL: OUTLINE" : "SCROLL: ARTICLE";
-      status.classList.add("is-visible");
-      window.clearTimeout(statusTimer);
-      statusTimer = window.setTimeout(function () {
-        status.classList.remove("is-visible");
-      }, 1200);
-    }
 
     function setActiveHeading(id, forceScroll) {
       if (!id || (activeId === id && !forceScroll)) return;
@@ -128,7 +111,7 @@ layout: default
       setActiveHeading(current.id);
     }
 
-    if (!desktop.matches) {
+    if (window.matchMedia("(max-width: 900px)").matches) {
       toggle.setAttribute("aria-expanded", "false");
       list.hidden = true;
     }
@@ -137,30 +120,8 @@ layout: default
       var expanded = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!expanded));
       list.hidden = expanded;
-      setScrollMode(expanded ? "article" : "outline", true);
       if (!expanded) setActiveHeading(activeId || headings[0].id, true);
     });
-
-    if (postLayout) {
-      postLayout.addEventListener("click", function (event) {
-        if (!desktop.matches || event.target.closest(".post-toc-toggle")) return;
-        var tocLeft = toc.getBoundingClientRect().left;
-        var outlineAvailable = !list.hidden && event.clientX >= tocLeft;
-        setScrollMode(outlineAvailable ? "outline" : "article", true);
-      });
-    }
-
-    window.addEventListener("wheel", function (event) {
-      if (!desktop.matches) return;
-      var mode = document.body.getAttribute("data-post-scroll-mode");
-      if (mode === "outline" && !list.hidden) {
-        event.preventDefault();
-        list.scrollTop += event.deltaY;
-      } else if (mode === "article" && toc.contains(event.target)) {
-        event.preventDefault();
-        window.scrollBy(0, event.deltaY);
-      }
-    }, { passive: false });
 
     var ticking = false;
     window.addEventListener("scroll", function () {
@@ -172,11 +133,6 @@ layout: default
       });
     }, { passive: true });
 
-    desktop.addEventListener("change", function () {
-      setScrollMode("article", false);
-    });
-
-    setScrollMode("article", false);
     updateActiveHeading();
   })();
 </script>

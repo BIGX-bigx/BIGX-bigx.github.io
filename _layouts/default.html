@@ -9,7 +9,7 @@
     <main class="container page-shell">
       {{ content }}
     </main>
-    <footer class="site-footer">
+    <footer class="site-footer{% if page.url == '/topics/' or page.url == '/profile/' %} site-footer-flush{% endif %}">
       <div class="container">
         <span>{{ site.title }}</span>
         <span class="footer-dot">/</span>

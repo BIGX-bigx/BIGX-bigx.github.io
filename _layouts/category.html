@@ -4,7 +4,7 @@ wide: true
 ---
 
 {% assign category_name = page.category %}
-{% assign posts = site.categories[category_name] %}
+{% assign posts = site.posts | where_exp: "post", "post.categories contains category_name" %}
 {% assign article_pages = site.pages | where_exp: "item", "item.path contains 'articles/'" %}
 {% assign article_pages = article_pages | where_exp: "item", "item.path contains '.md'" %}
 {% assign collection_posts = article_pages | where_exp: "article", "article.categories contains category_name" %}

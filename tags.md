@@ -3,6 +3,7 @@ layout: page
 title: Tag
 description: "使用标签进行文章分类"
 permalink: /tags/
+wide: true
 ---
 
 {% assign article_pages = site.pages | where_exp: "item", "item.path contains 'articles/'" %}
@@ -11,14 +12,23 @@ permalink: /tags/
 {% assign all_tag_names = tag_names_raw | split: "|||" | uniq | sort %}
 
 {% if all_tag_names.size > 0 %}
-  <div class="tag-cloud">
-    {% for tag_name in all_tag_names %}
-      {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains tag_name" %}
-      {% assign tagged_articles = article_pages | where_exp: "article", "article.tags contains tag_name" %}
-      {% assign tagged_items = tagged_posts | concat: tagged_articles %}
-      <a href="#{{ tag_name | slugify }}">{{ tag_name }} <span>{{ tagged_items.size }}</span></a>
-    {% endfor %}
-  </div>
+  <section class="tag-index-panel">
+    <header class="tag-index-head">
+      <div>
+        <span>INDEX</span>
+        <h2>Browse by tag</h2>
+      </div>
+      <p>{{ all_tag_names.size }} tags</p>
+    </header>
+    <div class="tag-cloud">
+      {% for tag_name in all_tag_names %}
+        {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains tag_name" %}
+        {% assign tagged_articles = article_pages | where_exp: "article", "article.tags contains tag_name" %}
+        {% assign tagged_items = tagged_posts | concat: tagged_articles %}
+        <a href="#{{ tag_name | slugify }}"><span>{{ tag_name }}</span><strong>{{ tagged_items.size }}</strong></a>
+      {% endfor %}
+    </div>
+  </section>
 
   <div class="archive-list">
     {% for tag_name in all_tag_names %}

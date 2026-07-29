@@ -688,6 +688,10 @@ a:hover {
   position: relative;
 }
 
+.code-copy-button {
+  display: none !important;
+}
+
 .code-language-button {
   position: absolute;
   top: 7px;

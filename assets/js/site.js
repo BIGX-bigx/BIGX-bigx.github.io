@@ -107,6 +107,10 @@
     sql: "SQL"
   };
 
+  document.querySelectorAll(".code-copy-button").forEach(function (button) {
+    button.remove();
+  });
+
   function getCodeLanguage(pre) {
     var block = pre.closest("div[class*='language-']");
     if (!block) return null;

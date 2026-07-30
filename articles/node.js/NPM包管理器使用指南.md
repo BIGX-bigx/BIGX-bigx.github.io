@@ -82,7 +82,7 @@ npm 自动生成的锁文件，精确记录每个依赖包的版本号、下载�
   package.json          ← 声明依赖（人工维护）
   package-lock.json     ← 锁定精确版本（自动生成）
   node_modules/         ← 实际安装的包文件（自动生成）
-````
+```
 ---
 ## 2.3 语义化版本 SemVer
 >NPM 使用语义化版本规范（Semantic Versioning），格式为 `MAJOR.MINOR.PATCH`。
@@ -467,7 +467,7 @@ SBOM 列出了项目中所有直接和间接依赖的完整清单（包名、版
 3. npm view <pkg> versions → 对照版本确认是否存在已知 CVE
 4. 搜索 CVE/GitHub Issues → 找对应版本的漏洞利用方式
 5. npm audit → 快速扫描已知漏洞（需要有网络）
-````
+```
 ---
 # 7 脚本执行与工程化
 
@@ -530,7 +530,7 @@ preinstall → install → postinstall
 prepublish → prepare → prepublishOnly → publish → postpublish
 pretest → test → posttest
 prestart → start → poststart
-````
+```
 
 ## 7.4 npx —— 免安装执行神器
 

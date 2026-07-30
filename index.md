@@ -21,7 +21,7 @@ title: HomePage
   <span id="welcome-typewriter"></span>
 </div>
 
-<script>
+<script nonce="YmlneC1ibG9nLXVpLTIwMjY=">
   (function () {
     var target = document.getElementById("welcome-typewriter");
     if (!target) return;

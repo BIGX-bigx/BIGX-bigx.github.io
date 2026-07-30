@@ -37,7 +37,7 @@ topics_search: true
   </section>
 </div>
 
-<script>
+<script nonce="YmlneC1ibG9nLXVpLTIwMjY=">
   (function () {
     var cards = Array.prototype.slice.call(document.querySelectorAll("[data-post-card]"));
     var pagination = document.getElementById("topics-pagination");

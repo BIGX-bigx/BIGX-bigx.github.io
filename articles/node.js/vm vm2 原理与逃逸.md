@@ -403,7 +403,7 @@ this.constructor                  → 宿主的 Object 构造函数
 this.constructor.constructor      → 宿主的 Function 构造函数
 this.constructor.constructor('return process')   → 创建一个返回 process 的函数
 this.constructor.constructor('return process')() → 执行它，拿到宿主的 process！
-````
+```
 
 整条路径的每一步都是利用 JavaScript 原型链的正常行为，没有任何黑魔法。
 
@@ -750,7 +750,7 @@ vm2/
   ├── main.js         ← 对外导出 VM、NodeVM、VMScript 类
   ├── contextify.js   ← 核心文件：实现 Contextify 和 Decontextify
   └── sandbox.js      ← 对 global 内置对象的 hook 和替换
-````
+```
 
 其中 `contextify.js` 是最核心的文件，几乎所有的漏洞都跟它有关——攻击者需要找到 vm2 在哪个地方漏掉了代理，让宿主对象裸露出来。
 
@@ -842,7 +842,7 @@ V8 引擎对函数调用栈的深度有上限（大约 10000 层左右，具体�
 5. 沙箱代码 catch 到这个异常对象 e
 6. e 是宿主的 Error 对象 → e.constructor 是宿主 Error → e.constructor.constructor 是宿主 Function
 7. 后续正常流程：用 Function 获取 process，RCE
-````
+```
 
 关键点：不是沙箱内的递归直接爆了，而是精心控制，**恰好在宿主函数入栈时触发爆栈**，这样爆出来的异常是宿主的。
 
@@ -1182,7 +1182,7 @@ vm2
   ├─ 版本 ≤ 3.9.10 → CVE-2022-36067（prepareStackTrace）
   ├─ 版本 ≤ 3.9.14 → CVE-2023-29017（frames 未代理）
   └─ 版本 ≤ 3.10.1 → CVE-2026-22709（globalPromise）
-````
+```
 
 ## 4.3 版本与可用漏洞对照表
 

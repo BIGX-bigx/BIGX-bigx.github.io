@@ -18,7 +18,7 @@ wide: true
   </noscript>
 </section>
 
-<script>
+<script nonce="YmlneC1ibG9nLXVpLTIwMjY=">
   (function () {
     var mount = document.getElementById("comments-widget");
     if (!mount) return;

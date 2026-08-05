@@ -416,27 +416,27 @@ X-Custom-Header: arbitrary-value
 
 ## 九、字段汇总速查表
 
-|分类|字段名|核心作用|CTF 关注度|
-|---|---|---|---|
-|基础|Host|指定目标主机|⭐⭐⭐|
-|基础|Content-Type|请求体格式|⭐⭐⭐|
-|基础|Content-Length|请求体长度|⭐⭐⭐|
-|基础|Transfer-Encoding|分块传输|⭐⭐⭐|
-|基础|Connection|连接控制|⭐|
-|认证|Cookie|会话凭据|⭐⭐⭐|
-|认证|Authorization|认证凭据|⭐⭐⭐|
-|认证|X-Auth-Token|自定义认证|⭐⭐|
-|协商|Accept|接受的响应类型|⭐|
-|协商|Accept-Encoding|接受的压缩方式|⭐|
-|环境|User-Agent|客户端标识|⭐⭐⭐|
-|环境|Referer|来源页面|⭐⭐⭐|
-|环境|Origin|来源源|⭐⭐|
-|代理|X-Forwarded-For|原始客户端 IP|⭐⭐⭐|
-|代理|X-Real-IP|真实 IP|⭐⭐⭐|
-|代理|X-Forwarded-Proto|原始协议|⭐⭐|
-|代理|X-Forwarded-Host|原始 Host|⭐⭐|
-|代理|Via|代理节点|⭐⭐⭐|
-|Range|Range|请求部分内容|⭐⭐|
-|升级|Upgrade|协议升级|⭐⭐|
-|自定义|X-Requested-With|AJAX 标识|⭐⭐⭐|
-|自定义|X-CSRF-Token|CSRF 防护|⭐⭐|
+|字段名|核心作用|
+|---|---|
+|Host|指定目标主机|
+|Content-Type|请求体格式|
+|Content-Length|请求体长度|
+|Transfer-Encoding|分块传输|
+|Connection|连接控制|
+|Cookie|会话凭据|
+|Authorization|认证凭据|
+|X-Auth-Token|自定义认证|
+|Accept|接受的响应类型|
+|Accept-Encoding|接受的压缩方式|
+|User-Agent|客户端标识|
+|Referer|来源页面|
+|Origin|来源源|
+|X-Forwarded-For|原始客户端 IP|
+|X-Real-IP|真实 IP|
+|X-Forwarded-Proto|原始协议|
+|X-Forwarded-Host|原始 Host|
+|Via|代理节点|
+|Range|请求部分内容|
+|Upgrade|协议升级|
+|X-Requested-With|AJAX 标识|
+|X-CSRF-Token|CSRF 防护|

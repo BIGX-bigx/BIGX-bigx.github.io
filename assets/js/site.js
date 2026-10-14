@@ -1,5 +1,7 @@
 (function () {
   var themeToggle = document.getElementById("theme-toggle");
+  var motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var themeTransition = null;
 
   function updateThemeControl(theme) {
     if (!themeToggle) return;
@@ -23,17 +25,86 @@
 
   if (themeToggle) {
     updateThemeControl(document.documentElement.dataset.theme || "light");
-    themeToggle.addEventListener("click", function () {
+    themeToggle.addEventListener("click", function (event) {
+      if (themeTransition) return;
       var nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = nextTheme;
-      try {
-        localStorage.setItem("blog-theme", nextTheme);
-      } catch (error) {
-        // The current page still switches even when storage is unavailable.
+      function applyTheme() {
+        document.documentElement.dataset.theme = nextTheme;
+        try {
+          localStorage.setItem("blog-theme", nextTheme);
+        } catch (error) {
+          // The current page still switches even when storage is unavailable.
+        }
+        updateThemeControl(nextTheme);
+        updateCommentsTheme(nextTheme);
       }
-      updateThemeControl(nextTheme);
-      updateCommentsTheme(nextTheme);
+
+      if (!document.startViewTransition || motionPreference.matches) {
+        applyTheme();
+        return;
+      }
+
+      var rect = themeToggle.getBoundingClientRect();
+      var x = event.detail ? event.clientX : rect.left + rect.width / 2;
+      var y = event.detail ? event.clientY : rect.top + rect.height / 2;
+      var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      document.documentElement.classList.add("theme-reveal-active");
+      try {
+        themeTransition = document.startViewTransition(applyTheme);
+      } catch (error) {
+        document.documentElement.classList.remove("theme-reveal-active");
+        applyTheme();
+        return;
+      }
+      var transition = themeTransition;
+      transition.ready.then(function () {
+        document.documentElement.animate({
+          clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + radius + "px at " + x + "px " + y + "px)"]
+        }, {
+          duration: 520,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          pseudoElement: "::view-transition-new(root)"
+        });
+      }).catch(function () {
+        // A skipped transition still applies the theme through its update callback.
+      });
+      transition.finished.finally(function () {
+        document.documentElement.classList.remove("theme-reveal-active");
+        themeTransition = null;
+      }).catch(function () {});
     });
+  }
+
+  var ambientBackground = document.getElementById("ambient-background");
+  if (ambientBackground) {
+    var precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var ambientFrame = null;
+    var ambientX = 0;
+    var ambientY = 0;
+    window.addEventListener("pointermove", function (event) {
+      if (motionPreference.matches || !precisePointer.matches || event.pointerType === "touch") return;
+      ambientX = event.clientX;
+      ambientY = event.clientY;
+      if (ambientFrame !== null) return;
+      ambientFrame = window.requestAnimationFrame(function () {
+        ambientBackground.style.setProperty("--ambient-x", ambientX + "px");
+        ambientBackground.style.setProperty("--ambient-y", ambientY + "px");
+        ambientBackground.classList.add("is-active");
+        ambientFrame = null;
+      });
+    }, { passive: true });
+
+    function clearAmbientPointer() {
+      if (ambientFrame !== null) window.cancelAnimationFrame(ambientFrame);
+      ambientFrame = null;
+      ambientBackground.classList.remove("is-active");
+      ambientBackground.style.removeProperty("--ambient-x");
+      ambientBackground.style.removeProperty("--ambient-y");
+    }
+    document.documentElement.addEventListener("pointerleave", clearAmbientPointer);
+    window.addEventListener("blur", clearAmbientPointer);
+    motionPreference.addEventListener("change", clearAmbientPointer);
+    precisePointer.addEventListener("change", clearAmbientPointer);
   }
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

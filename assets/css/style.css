@@ -10,6 +10,8 @@
   --glass: rgba(255, 255, 255, 0.92);
   --link: #111827;
   --accent: #2563eb;
+  --ambient-grid: rgba(17, 19, 24, 0.05);
+  --ambient-glow: rgba(16, 185, 129, 0.09);
   --max: 1360px;
   color-scheme: light;
 }
@@ -26,6 +28,8 @@
   --glass: rgba(24, 27, 34, 0.92);
   --link: #eef1f6;
   --accent: #8ab4f8;
+  --ambient-grid: rgba(255, 255, 255, 0.045);
+  --ambient-glow: rgba(52, 211, 153, 0.11);
   color-scheme: dark;
 }
 
@@ -43,11 +47,75 @@ html {
 
 body {
   margin: 0;
+  isolation: isolate;
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
   line-height: 1.75;
   transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* Keep the decorative layers behind content without changing page geometry. */
+.ambient-background {
+  --ambient-x: 50vw;
+  --ambient-y: 50vh;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ambient-background::before,
+.ambient-background::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.ambient-background::before {
+  background-image:
+    linear-gradient(to right, var(--ambient-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ambient-grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(circle 650px at var(--ambient-x) var(--ambient-y), #000 15%, rgba(0, 0, 0, 0.25) 70%, transparent 100%);
+  mask-image: radial-gradient(circle 650px at var(--ambient-x) var(--ambient-y), #000 15%, rgba(0, 0, 0, 0.25) 70%, transparent 100%);
+}
+
+.ambient-background::after {
+  background: radial-gradient(circle 480px at var(--ambient-x) var(--ambient-y), var(--ambient-glow), transparent 75%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.ambient-background.is-active::after {
+  opacity: 1;
+}
+
+/* Scope the circular reveal so existing page-navigation animations stay intact. */
+:root.theme-reveal-active,
+:root.theme-reveal-active * {
+  transition: none !important;
+}
+
+:root.theme-reveal-active::view-transition-group(root),
+:root.theme-reveal-active::view-transition-old(root),
+:root.theme-reveal-active::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root.theme-reveal-active::view-transition-old(root) {
+  z-index: 1;
+}
+
+:root.theme-reveal-active::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .ambient-background::after {
+    display: none;
+  }
 }
 
 [hidden] {

@@ -4,6 +4,7 @@
     {% include head.html %}
   </head>
   <body class="layout-{{ page.layout | default: 'default' }}">
+    <div class="ambient-background" id="ambient-background" aria-hidden="true"></div>
     <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
     {% include nav.html %}
     <main class="container page-shell">

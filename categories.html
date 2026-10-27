@@ -10,7 +10,7 @@ wide: true
 {% assign article_pages = article_pages | where_exp: "item", "item.path contains '.md'" %}
 {% assign category_pages = site.pages | where: "layout", "category" | sort: "title" %}
 
-{% if article_pages.size > 0 or site.posts.size > 0 %}
+{% if category_pages.size > 0 %}
   <div class="folder-grid">
     {% for category_page in category_pages %}
       {% assign category_name = category_page.category %}
@@ -19,7 +19,7 @@ wide: true
       {% assign category_items = category_posts | concat: category_articles %}
       {% assign slug = category_name | slugify %}
       {% assign meta = site.data.categories[slug] %}
-      {% if category_items.size > 0 %}
+      {% if category_items.size > 0 or category_page.show_empty %}
         <a class="folder-card simple-card" href="{{ category_page.url | relative_url }}">
           <h2>{{ category_page.title | default: meta.title | default: category_name }}</h2>
           <p>{{ category_page.description | default: meta.description | default: "暂无备注" }} · {{ category_items.size }} 篇</p>

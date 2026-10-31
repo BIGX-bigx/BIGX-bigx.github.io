@@ -18,7 +18,11 @@ wide: true
   <p class="category-note">{{ page.note }}</p>
 {% endif %}
 
-{% if posts and posts.size > 0 %}
+{% if page.archive_style == 'monthly' %}
+  {% include category-monthly-archive.html %}
+{% elsif page.archive_style == 'title-list' %}
+  {% include category-title-archive.html %}
+{% elsif posts and posts.size > 0 %}
   {% if page.group_by_folder %}
     {% assign folder_groups = posts | group_by: "web_folder" | sort: "name" %}
     <div class="web-note-folder-grid">

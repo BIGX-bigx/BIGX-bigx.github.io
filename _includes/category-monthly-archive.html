@@ -1,0 +1,47 @@
+{% assign month_groups = posts | group_by_exp: "post", "post.date | date: '%Y-%m'" %}
+<div class="category-monthly-archive" data-category-archive>
+  <div class="category-archive-toolbar">
+    <span class="category-archive-count" data-archive-count role="status" aria-live="polite">{{ posts.size }} 篇文章</span>
+    <label class="category-archive-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"></circle><path d="m15 15 5 5"></path></svg>
+      <input type="search" data-archive-search aria-label="搜索 CTFs 文章标题、日期或标签" placeholder="搜索这些记录…" autocomplete="off">
+    </label>
+  </div>
+  {% if posts.size > 0 %}
+  <div class="category-monthly-layout">
+    <nav class="category-month-index" aria-label="文章月份索引">
+      <p class="category-month-index-label">IN THIS ARCHIVE</p>
+      {% for month in month_groups %}
+        <a href="#archive-month-{{ forloop.index }}" data-archive-index="archive-month-{{ forloop.index }}">
+          <span>{% if month.items.first.date %}{{ month.items.first.date | date: "%Y / %m" }}{% else %}未标日期{% endif %}</span>
+          <small data-month-index-count>{{ month.items.size }}</small>
+        </a>
+      {% endfor %}
+    </nav>
+    <div class="category-month-groups">
+      {% for month in month_groups %}
+      <section class="category-month-group" id="archive-month-{{ forloop.index }}" data-archive-month>
+        <header class="category-month-header">
+          <h2>{% if month.items.first.date %}{{ month.items.first.date | date: "%B" }}<small>{{ month.items.first.date | date: "%Y / %m" }} 月</small>{% else %}未标日期{% endif %}</h2>
+          <span data-month-count>{{ month.items.size }} 篇</span>
+        </header>
+        {% for post in month.items %}
+          {% assign post_title = post.title | default: post.slug | default: post.name %}
+          {% assign post_summary = post.description | default: post.excerpt | strip_html | strip_newlines | strip | truncate: 100 %}
+          {% capture search_text %}{{ post_title }} {{ post.date | date: "%Y-%m-%d" }} {{ post.tags | join: ' ' }}{% endcapture %}
+          <a class="category-month-entry" href="{{ post.url | relative_url }}" data-archive-entry data-search="{{ search_text | strip | downcase | escape }}">
+            {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}" aria-label="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d" }}</time>{% else %}<span class="category-month-day">—</span>{% endif %}
+            <div class="category-month-entry-copy">
+              <h3>{{ post_title | escape }}</h3>
+              {% if post_summary != empty %}<p class="category-archive-summary">{{ post_summary | escape }}</p>{% endif %}
+            </div>
+            <span class="category-archive-arrow" aria-hidden="true">↗</span>
+          </a>
+        {% endfor %}
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <p class="category-archive-empty" data-archive-empty{% if posts.size > 0 %} hidden{% endif %}>{% if posts.size == 0 %}这个分类下面还没有文章。{% else %}没有匹配的文章，试试其他关键词。{% endif %}</p>
+</div>

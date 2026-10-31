@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<article class="page{% if page.wide %} page-wide{% endif %}">
+<article class="page{% if page.wide %} page-wide{% endif %}{% if page.archive_style %} category-archive-page category-archive-page--{{ page.archive_style | escape }}{% endif %}">
   <header class="page-header{% if page.topics_search %} page-header-with-tools{% endif %}">
     <div class="page-header-copy">
       <h1>{{ page.title }}</h1>

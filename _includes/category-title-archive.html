@@ -1,0 +1,11 @@
+<div class="category-title-archive">
+  {% for post in posts %}
+    {% assign post_title = post.title | default: post.slug | default: post.name %}
+    <a class="category-title-entry" href="{{ post.url | relative_url }}">
+      <span class="category-title-entry-name">{{ post_title | escape }}</span>
+      {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>{% else %}<span class="category-title-entry-date">未标日期</span>{% endif %}
+    </a>
+  {% else %}
+    <p class="category-archive-empty">这个分类下面还没有文章。</p>
+  {% endfor %}
+</div>
